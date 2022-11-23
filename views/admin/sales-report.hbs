@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+
+
+<link href="/assets/css/bootstrap-2.min.css" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="/assets/css/style3.css" rel="stylesheet">
+<div class="container-fluid position-relative d-flex p-0">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-lg-12 mt-5">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"><u>Sales Report</u></p>
+                            </div>
+                        </div>
+                        
+                        <table class="table" id="example">
+                            <thead class="bg-secondary text-white">
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">OrderID</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Payment</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Contact</th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable" class="text-white-50">
+                                {{#each salesReport}}
+                                <tr>
+                                    <th scope="row" class="fs-bold">{{inc @index}}</th>
+                                    <td>{{this._id}}</td>
+                                    <td>{{this.date}}</td>
+                                    <td>{{this.deliveryDetails.name}} </td>
+                                    <td>{{this.totalAmount}}</td>
+                                    <td>{{this.paymentMethod}}</td>
+                                    <td>{{this.status}}</td>
+                                    <td>{{this.deliveryDetails.phone}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{{!-- <script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script> --}}
+
+{{!-- datatable js --}}
+{{!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+    $('#example').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+        "searching" : true,
+        "paging": false,
+        'ordering':false,
+        'info':false
+    });
+});
+</script>

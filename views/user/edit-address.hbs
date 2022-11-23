@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <section id="addaddress">
+                <h3 class="fw-normal mb-2 mt-5 text-center pb-3" style="letter-spacing: 1px;">Edit Address</h3>
+
+                <form action="/add-address" method="post" id="checkout-form">
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <input type="text" class="form-control mb-3 d-none" name="id" id="id" value=""
+                                placeholder="Name">
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <input type="text" class="form-control mb-3" name="name" id="name" value="{{addressDetails.address.name}}"
+                                placeholder="Name" onkeyup="validateName()">
+                            <span id="name-error"></span>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <input type="text" class="form-control mb-3" name="address" id="street_address"
+                                placeholder="Address" value="{{addressDetails.address.address}}" onkeyup="validateAddress()">
+                            <span id="address-error"></span>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <input type="text" class="form-control mb-3" name="town" id="town" placeholder="Town"
+                                value="{{addressDetails.address.town}}" onkeyup="validateTown()">
+                            <span id="town-error"></span>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <input type="text" class="form-control mb-3" name="district" id="district"
+                                placeholder="District" value="{{addressDetails.address.district}}" onkeyup="validateDistrict()">
+                            <span id="district-error"></span>
+                        </div>
+                        
+                        <div class="col-12 mb-3">
+                            <input type="text" class="form-control mb-3" name="state" id="state" placeholder="State"
+                                value="{{addressDetails.address.state}}" onkeyup="validateState()">
+                            <span id="state-error"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control mb-3" id="pincode" name="pincode"
+                                placeholder="Pin Code" value="{{addressDetails.address.pincode}}" onkeyup="validatePincode()">
+                            <span id="pincode-error"></span>
+
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="number" class="form-control mb-3" name="phone" id="phone" min="0"
+                                placeholder="Phone No" value="{{addressDetails.address.phone}}" minlength="10" maxlength="10"
+                                onkeyup="validateMobile()">
+                            <span id="mobile-error"></span>
+                        </div>
+
+                    </div>
+                    <div>
+                        <button onsubmit="formSubmit()" class="btn btn-outline-warning w-100" type="submit">Add
+                            Address</button>
+                    </div>
+
+                </form>
+            </section>
+        </div>
+    </div>
+</div>

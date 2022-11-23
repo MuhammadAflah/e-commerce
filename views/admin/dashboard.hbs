@@ -1,0 +1,449 @@
+<link href="/assets/css/bootstrap-2.min.css" rel="stylesheet">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<!-- Template Stylesheet -->
+<link href="/assets/css/style3.css" rel="stylesheet">
+
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+
+        {{!-- <h1>hello {{adminsession.email}}</h1> --}}
+        <div class="container-fluid pt-4 px-2">
+            <div class="row g-4">
+                <div class="col-xl-3 col-md-6">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-user fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Total Users</p>
+                            <h5 class="mb-0">{{userCount}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-ship fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Total Products</p>
+                            <h5 class="mb-0">{{productCount}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-truck fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Total Orders</p>
+                            <h5 class="mb-0">{{orderCount}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-ban fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Cancelled Orders</p>
+                            <h5 class="mb-0">{{cancelCount}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-chart-line fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Daily Revenue</p>
+                            <h5 class="mb-0">₹ {{dailyRevenue}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-solid fa-chart-column fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Weekly Revenue</p>
+                            <h5 class="mb-0">₹ {{weeklyRevenue}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-chart-area fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Yearly Revenue</p>
+                            <h5 class="mb-0">₹ {{yearlyRevenue}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Total Revenue</p>
+                            <h5 class="mb-0">₹ {{totalRevenue}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end">
+                <a href="/admin/sales-management" class="btn btn-dark ml-auto mb-4 me-2 mt-5 w-25" style="">Sales Report</a>
+            </div>
+            <div class="" style="width:100%">
+                <div class="container-fluid  ">
+                    <div class="row mt-5 ">
+                        <style>
+                            * {
+                                margin: 0;
+                                padding: 0;
+                                font-family: sans-serif;
+                            }
+
+                            .chartMenu {
+                                width: 100vw;
+                                height: 40px;
+                                background: #1A1A1A;
+                                color: rgba(255, 26, 104, 1);
+                            }
+
+                            .chartMenu p {
+                                padding: 10px;
+                                font-size: 20px;
+                            }
+
+                            .chartCard {
+                                width: 100vw;
+                                height: calc(100vh - 40px);
+                                {{!-- background: rgb(139 139 139 / 20%); --}}
+                                background: rgb(0 0 0 / 20%);
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            }
+
+                            .chartBox {
+                                width: 700px;
+                                padding: 20px;
+                                border-radius: 20px;
+                                border: solid 3px rgba(255, 26, 104, 1);
+                                background: white;
+                            }
+                        </style>
+                        </head>
+
+                        <body>
+
+                            <div class="chartCard">
+                                <div class="chartBox">
+                                    <canvas id="totalReport"></canvas>
+                                </div>
+                            </div>
+                        
+                            <div class="chartCard">
+                                <div class="chartBox">
+                                    <canvas id="total"></canvas>
+                                </div>
+                            </div>
+                            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                            
+                            <script>
+                                // DAILY 
+                                var data = {
+                                    labels: ['Today', 'weekly', 'yearly'],
+                                    datasets: [{
+                                        label: 'Daily Sales',
+                                        data: [{{dailyRevenue}}, {{weeklyRevenue}}, {{yearlyRevenue}}],
+                                    backgroundColor: [
+                                        'rgba(255, 26, 104, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)',
+                                        'rgba(0, 0, 0, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 26, 104, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)',
+                                        'rgba(0, 0, 0, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                                    };
+
+                                // config 
+                                var config = {
+                                    type: 'bar',
+                                    data,
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                };
+
+                                // render init block
+                                var myChart = new Chart(
+                                    document.getElementById('totalReport'),
+                                    config
+                                );
+
+    
+                                //TOTAL REVENUE
+                                var data = {
+                                    labels: ['Total Revenue'],
+                                    datasets: [{
+                                        label: 'Total Revenue',
+                                        data: [{{ totalRevenue }}],
+                                    backgroundColor: [
+                                        'rgba(255, 26, 104, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)',
+                                        'rgba(0, 0, 0, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 26, 104, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)',
+                                        'rgba(0, 0, 0, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                                };
+
+                                // config 
+                                var config = {
+                                    type: 'bar',
+                                    data,
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                };
+
+                                // render init block
+                                var myChart = new Chart(
+                                    document.getElementById('total'),
+                                    config
+                                );
+
+
+
+                            </script>
+                    </div>
+                </div>
+            </div>
+        
+        <section class=" py-5 mx-3 container-fluid" style="    background: rgb(0 0 0 / 20%);">
+        <div class="row">
+            <div class="ms-auto me-auto bg-white mb-5" style="width: 60%; border-radius: 20px; border: solid 3px rgba(255, 26, 104, 1);">
+                <canvas id="bar-chart" ></canvas>
+            </div>
+            <div class="col-lg-5 mt-5 ms-auto me-auto bg-white "  style="width: 60%; border-radius: 20px; border: solid 3px rgba(255, 26, 104, 1);">
+                <canvas id="circle-chart" ></canvas>
+            </div>
+        </div>
+         <div class="col-lg-5"  style="width: 60%;">
+                <canvas id="finalchart" style="display: block; box-sizing: border-box; height: 310px; width: 450px;"></canvas>
+            </div>
+    </section>
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+<script>
+  
+    let monthName = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    let monthlyProfit = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    let weekly = [0, 0, 0, 0, 0, 0, 0]
+    let weekName = ["Sunday", "Monday", "Tuesday", "WednesDay", "Thursday", "Friday", "Saturday"]
+    let paymethod=["Paypal","Razorpay","Cash on Delivery"]
+    let payamount=[0,0,0]
+    let barChart = document.getElementById("bar-chart").getContext('2d')
+    let circleChart = document.getElementById("circle-chart").getContext('2d')
+    let finalchart=document.getElementById("finalchart").getContext('2d')
+    document.addEventListener('DOMContentLoaded', () => 
+    {
+      console.log("haiii")
+        fetch('/admin/chart-data', 
+        {
+            method: 'get',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' }
+        }).then(res => res.json()).then(res => 
+        {
+            let { data, weeklyReport } = res;
+            for (i = 0; i < data.length; ++i) 
+            {
+                switch (data[i].month)
+                 {
+                    case 1:
+                        monthlyProfit[0] = data[i].total
+                        break;
+                    case 2:
+                        monthlyProfit[1] = data[i].total
+                        break;
+                    case 3:
+                        monthlyProfit[2] = data[i].total
+                        break;
+                    case 4:
+                        monthlyProfit[3] = data[i].total
+                        break;
+                    case 5:
+                        monthlyProfit[4] = data[i].total
+                        break;
+                    case 6:
+                        monthlyProfit[5] = data[i].total
+                        break;
+                    case 7:
+                        monthlyProfit[6] = data[i].total
+                        break;
+                    case 8:
+                        monthlyProfit[7] = data[i].total
+                        break;
+                    case 9:
+                        monthlyProfit[8] = data[i].total
+                        break;
+                    case 10:
+                        monthlyProfit[9] = data[i].total
+                        break;
+                    case 11:
+                        monthlyProfit[10] = data[i].total
+                        break;
+                    case 12:
+                        monthlyProfit[11] = data[i].total
+                        break;
+                }
+            }
+            console.log(monthlyProfit)
+            console.log(weeklyReport)
+            const months = monthName;
+            const data1 = {
+                labels: months,
+                datasets: [{
+                    label: 'Monthly sales',
+                    backgroundColor: [
+                        'rgba(255, 26, 104, 0.5)',
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(255, 206, 86, 0.5)',
+                        'rgba(75, 192, 192, 0.5)',
+                        'rgba(153, 102, 255, 0.5)',
+                        'rgba(255, 159, 64, 0.5)',
+                        'rgba(0, 0, 0, 0.5)'                    
+                    ],
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: monthlyProfit,
+                }]
+            };
+            const monthlyconfig = {
+                type: 'bar',
+                data: data1,
+                options: {}
+            };
+            let chart1 = new Chart(barChart, monthlyconfig)
+
+            for (i = 0; i < weeklyReport.length; ++i) {
+                switch (weeklyReport[i].date) {
+                    case 1:
+                        weekly[0] = weeklyReport[i].total
+                        break;
+                    case 2:
+                        weekly[1] = weeklyReport[i].total
+                        break;
+                    case 3:
+                        weekly[2] = weeklyReport[i].total
+                        break;
+                    case 4:
+                        weekly[3] = weeklyReport[i].total
+                        break;
+                    case 5:
+                        weekly[4] = weeklyReport[i].total
+                        break;
+                    case 6:
+                        weekly[5] = weeklyReport[i].total
+                        break;
+                    case 7: weekly[6] = weeklyReport[i].total
+                        break;
+                        
+                }
+            }
+            
+            //weekly sales
+            const labels = weekName;
+            const data2 = {
+                labels: labels,
+                datasets: [{
+                    label: 'Weekly sales',
+                    backgroundColor: [
+                        'rgba(255, 26, 104, 0.5)',
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(255, 206, 86, 0.5)',
+                        'rgba(75, 192, 192, 0.5)',
+                        'rgba(153, 102, 255, 0.5)',
+                        'rgba(255, 159, 64, 0.5)',
+                        'rgba(0, 0, 0, 0.5)'                    
+                    ],
+                    borderColor: 'red',
+                    data: weekly,
+                }]
+            };
+            const config = {
+                type: 'line',
+                data: data2,
+                options: {}
+            };
+            let chart2 = new Chart(circleChart, config)
+
+
+
+{{!-- 
+            for (i = 0; i < weeklyReport.length; ++i) {
+                switch (weeklyReport[i].method) {
+                    case 1:
+                        payamount[0] = weeklyReport[i].total
+                        break;
+                    case 2:
+                        payamount[1] = weeklyReport[i].total
+                        break;
+                    case 3:
+                        payamount[2] = weeklyReport[i].total
+                        break;
+                }
+            }
+            const paymentmethod=paymethod;
+            const data3={
+                labels:paymentmethod,
+                datasets:[{
+                    label: 'Payment Methods',
+                    backgroundColor: "green",
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: payamount,
+                }]
+            };
+             const config = {
+                type: 'line',
+                data: data3,
+                options: {}
+            };
+            let chart3 = new Chart(finalchart,config) --}}
+        })
+    })
+    
+  
+</script>
+
+
+    </div>
+    </div>
+</body>

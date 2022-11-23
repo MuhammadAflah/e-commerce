@@ -1,0 +1,221 @@
+<div class="page-wrapper">
+    <main class="main">
+        <div class="page-header text-center" style="background-image: url('/images/contact.jpg')">
+            <div class="container mt-4">
+                <h1 class="page-title mt-4">Contact Us</h1>
+            </div><!-- End .container -->
+        </div><!-- End .page-header -->
+        <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="#">Contact</a></li>
+                    {{!-- <li class="breadcrumb-item active" aria-current="page">Grid 3 Columns</li> --}}
+                </ol>
+            </div><!-- End .container -->
+        </nav><!-- End .breadcrumb-nav -->
+
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-lg-12">
+                        <section id="contact" class="contact  text-white" style="background-image: url('/images/contact1.png')">
+                            <div class="container" data-aos="fade-up" id="footer-cnt">
+
+                                <div class="section-title">
+                                    <h2 class="text-light">Contact</h2>
+                                </div>
+
+                                <div class="row mt-1  ">
+
+                                    <div class="col-lg-4 ">
+                                        <div class="info ">
+                                            <div class="address">
+                                                <i class="bi bi-geo-alt"></i>
+                                                <h4 class="text-light">Location:</h4>
+                                                <p>Musaliyar (H), Kottarakunnu (PO), Varambatta, Wayanad, 670731</p>
+                                            </div>
+
+                                            <div class="email">
+                                                <i class="bi bi-envelope"></i>
+                                                <h4 class="text-light">Email:</h4>
+                                                <p>muhammadaflahmc999@gmail.com</p>
+                                            </div>
+
+                                            <div class="phone">
+                                                <i class="bi bi-phone"></i>
+                                                <h4 class="text-light">Call:</h4>
+                                                <p>+91 8113863035</p>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-8 mt-5 mt-lg-0  text-light">
+
+                                        <form name="google-sheet" id="submit-form" action="" role="form" target="_blank"
+                                            class="php-email-form">
+                                            <div class="row">
+                                                <div class="col-md-6 form-group">
+                                                    <label for="name">Your Name</label>
+                                                    <input type="text" name="name" class="form-control"
+                                                        id="contact-name" onkeyup="validateName()"
+                                                        placeholder="Your Name">
+                                                    <span id="name-error"></span>
+                                                </div>
+                                                <div class="col-md-6 form-group mt-3 mt-md-0">
+                                                    <label for="name">Your Email</label>
+                                                    <input type="email" class="form-control" name="email"
+                                                        id="contact-email" onkeyup="validateEmail()"
+                                                        placeholder="Your Email">
+                                                    <span id="email-error"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mt-3">
+                                                <label for="name">Subject</label>
+                                                <input type="text" class="form-control" name="subject" id="subject"
+                                                    onkeyup="validateSubject()" placeholder="Subject">
+                                                <span id="subject-error"></span>
+                                            </div>
+                                            <div class="form-group mt-3">
+                                                <label for="name">Message</label>
+                                                <textarea class="form-control" name="message" rows="5" id="message"
+                                                    placeholder="Message" onkeyup="validateMessage()"></textarea>
+                                                <span id="message-error"></span>
+
+                                            </div>
+
+                                            <div class="text-center "><button onsubmit="contactSubmit()"
+                                                    type="submit" class="btn btn-success">Send Message</button>
+                                                <br><br>
+                                                <span id="submit-error"></span>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </section><!-- End Contact Section -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    
+var nameError = document.getElementById('name-error');
+var emailError = document.getElementById('email-error');
+var subjectError = document.getElementById('subject-error');
+var messageError = document.getElementById('message-error');
+
+
+function validateName() {
+    var name=document.getElementById('contact-name').value.trim();  
+
+    if (name.length==0) {
+        nameError.innerHTML='Name is Required';
+        nameError.style.color='red'
+        return false;
+    }
+
+    if (!name.match(/^[A-Za-z ]*$/)){
+        nameError.innerHTML='Write a FullName';
+        nameError.style.color='red'
+        return false;
+    }
+    if (name.length<3){
+        nameError.innerHTML='enter minimum 3 charactors';
+        nameError.style.color='red'
+        return false;
+    }
+    
+    nameError.innerHTML='Name is valid';
+    nameError.style.color='green'
+    return true;
+}
+
+function validateEmail(){
+    var email = document.getElementById('contact-email').value.trim();
+    if (email.length==0) {
+        emailError.innerHTML='Email is Required';
+        emailError.style.color='red'
+        return false;
+    }
+
+    if (!email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+        emailError.innerHTML='Email is Invalid';
+        emailError.style.color='red'
+        return false;
+    }
+    emailError.innerHTML='Email is valid';
+    emailError.style.color='green'
+    return true;
+}
+
+function validateSubject() {
+    var subject=document.getElementById('subject').value.trim();  
+
+    if (subject.length==0) {
+        subjectError.innerHTML='This field is Required';
+        subjectError.style.color='red'
+        return false;
+    }
+
+    if (!subject.match(/^[A-Za-z ]*$/)){
+        subjectError.innerHTML='Write a FullName';
+        subjectError.style.color='red'
+        return false;
+    }
+    
+    subjectError.innerHTML='Name is valid';
+    subjectError.style.color='green'
+    return true;
+}
+
+function validateMessage() {
+    var message =document.getElementById('message').value.trim();
+    
+    if(message.length==0 || message.length<10){
+        messageError.innerHTML ='more character Required';
+        messageError.style.color='red'
+        return false;
+    }
+    messageError.innerHTML='Message is valid';
+    messageError.style.color='green'
+    return true;   
+}
+
+$("#submit-form").submit((e)=>{
+        e.preventDefault()
+        console.log(validateName())
+        console.log(validateEmail())
+        console.log(validateSubject())
+        console.log(validateMessage())
+        if (validateName() && validateEmail() && validateSubject() && validateMessage()){
+          $.ajax({
+              url:"https://script.google.com/macros/s/AKfycbxdbqGYf9TDR5W8pNd3xCDuhPnhXRPFy8eEBtnNSpAkJSV4Y-kORJjM6RYP0cGUcwLN/exec",
+              data:$("#submit-form").serialize(),
+              method:"post",
+              success:function (response){
+                  swal.fire("Form submitted successfully").then(()=>{
+                    window.location.reload()
+                  })
+                  
+                  //window.location.href="https://google.com"
+              },
+              error:function (err){
+                  alert("Something Error")
+              
+              }
+          })
+        }
+        // else {
+        //   alert("validation error ❗❗❗")
+        // }
+    })
+</script>

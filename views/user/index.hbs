@@ -1,0 +1,807 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+{{!-- aos animation --}}
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+<div class="page-wrapper">
+    {{!-- <div class="background" style="background-image: url(assets/images/demos/demo-24/slider/banner-4-2.jpg);">
+
+        <div class="slider">
+            <div class="intro">
+                <div class="title">
+                    <h3>Premium Outdoor trekcing and hiking bags</h3>
+                </div>
+                <div class="content">
+                    <h4><i>Our New Collections 2022</i></h4>
+                    <h5>A backpack for a great adventure</h5>
+                </div>
+                <div class="action">
+                    <a href="category.html">discover now</a>
+                </div>
+            </div>
+            <!-- <img src="assets/images/demos/demo-24/slider/back-2.png"> -->
+        </div>
+    </div> --}}
+
+    <main class="main">
+
+        
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+
+            <div class="carousel-indicators">
+                {{#each allBanners}}
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{@index}}" class="{{this.slide}}"
+                    aria-current="true" aria-label="Slide 1"></button>
+                {{/each}}
+            </div>
+            
+            <div class="carousel-inner">
+                {{#each allBanners}}
+                <div class="carousel-item {{this.slide}}">
+                    <a href="/product-details"><img src="/banner-images/{{this._id}}1.jpg" class="d-block w-100" alt="image"></a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 class="intro-subtitle text-third slide-1-heading" data-aos="fade-left" data-aos-offset="200" data-aos-easing="ease-in-sine">{{this.name}}</h5>
+                        {{!-- <div class="intro-subtitle text-third slide-1-heading" data-aos="fade-right">{{this.name}}</div> --}}
+                        <p class="slide-1-subhead">{{this.subname}} Upto {{this.offer}} Off!!</p>
+                        <a href="/product-details" class="btn-btn-warning slide-button">Discover Now</a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+            
+            
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <section class="logos">
+            <div class="container" data-aos="fade-up" data-aos-duration="500">
+                <hr class="mb-4">
+                <div class="heading">
+                    <p class="heading-cat">trending brands</p>
+                </div>
+                <div class="owl-carousel mb-5 owl-simple" data-toggle="owl" data-owl-options='{
+                        "nav": true, 
+                        "dots": true,
+                        "margin": 30,
+                        "loop": false,
+                        "responsive": {
+                            "0": {
+                                "items":2
+                            },
+                            "420": {
+                                "items":3
+                            },
+                            "600": {
+                                "items":4
+                            },
+                            "900": {
+                                "items":5
+                            },
+                            "1024": {
+                                "items":6
+                            }
+                        }
+                    }'>
+                    <a href="#" class="brand">
+                        <img src="assets/images/demos/demo-24/brands/bag logo3.png" alt="Brand Name">
+                    </a>
+
+                    <a href="#" class="brand">
+                        <img src="assets/images/demos/demo-24/brands/bag logo4.png" alt="Brand Name">
+                    </a>
+
+                    <a href="#" class="brand">
+                        <img src="assets/images/demos/demo-24/brands/bag logo5.png" alt="Brand Name">
+                    </a>
+
+                    <a href="#" class="brand">
+                        <img src="assets/images/demos/demo-24/brands/bag logo6.jpg" alt="Brand Name">
+                    </a>
+
+                    <a href="#" class="brand">
+                        <img src="assets/images/demos/demo-24/brands/bag logo7.png" alt="Brand Name">
+                    </a>
+
+                    <a href="#" class="brand">
+                        <img src="assets/images/demos/demo-24/brands/bag logo8.jpg" alt="Brand Name">
+                    </a>
+
+                    <a href="#" class="brand">
+                        <img src="assets/images/demos/demo-24/brands/bag logo9.jpg" alt="Brand Name">
+                    </a>
+                    <a href="#" class="brand">
+                        <img src="assets/images/demos/demo-24/brands/bag logo10.jpg" alt="Brand Name">
+                    </a>
+                </div>
+                <!-- End .owl-carousel -->
+            </div>
+        </section>
+        <!-- End .container -->
+
+
+        <section class="banners center">
+            <div class="container">
+                <div class="row">
+                    <div class="banner col-lg-4 col-md-6 col-sm-6" data-aos="fade-left">
+                        <img src="assets/images/demos/demo-24/banners/banner-10.jpg">
+                        <div class="intro">
+                            <div class="title">
+                                <h3>Online mega deal</h3>
+                            </div>
+                            <div class="content">
+                                <h4>Trekking<br>& Hiking Bags</h4>
+                            </div>
+                            <div class="action">
+                                <a href="/product-details">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="banner percent col-lg-4 col-md-6 col-sm-6">
+                        <img src="assets/images/demos/demo-24/banners/banner-2.jpg">
+                        <div class="intro">
+                            <div class="title">
+                                <h3>Summer</h3>
+                                <h4>Clearance</h4>
+                            </div>
+                            <div class="img-percent">
+                                <img src="assets/images/demos/demo-24/banners/percent.png" width="190" height="75">
+                            </div>
+                            <div class="content">
+                                <h4>Dont miss the chance</h4>
+                            </div>
+                            <div class="action">
+                                <a href="/product-details">Discover Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="banner col-lg-4  col-md-6 col-sm-6" data-aos="fade-right">
+                        <img src="assets/images/demos/demo-24/banners/banner-11.jpg">
+                        <div class="intro">
+                            <div class="title">
+                                <h3>Lightning Deals</h3>
+                            </div>
+                            <div class="content">
+                                <h4>Men &<br>Women</h4>
+                            </div>
+                            <div class="action">
+                                <a href="/product-details">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="best-sellers">
+            <div class="container">
+                <div class="heading">
+                    <p class="heading-cat">favourite from every category</p>
+                    <h3 class="heading-title">Best Sellers</h3>
+                </div>
+                <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow text-center"
+                    data-toggle="owl" data-owl-options='{
+                        "nav": true, 
+                        "dots": false,
+                        "margin": 30,
+                        "loop": false,
+                        "responsive": {
+                            "0": {
+                                "items":2
+                            },
+                            "768": {
+                            	"items":3
+                            },
+                            "992": {
+                                "items":3
+                            },
+                            "1200": {
+                            	"items":4
+                            }
+                        }
+                    }'>
+                    {{#each allProducts}}
+                    <div class="product product-10 text-center">
+                        <figure class="product-media">
+                            <a href="/product/{{this._id}}">
+                                <img src="/product-images/{{this._id}}1.jpg" alt="Product image"
+                                    class="product-image">
+                                <img src="/product-images/{{this._id}}2.jpg" alt="Product image"
+                                    class="product-image-hover">
+                            </a>
+
+
+                        </figure>
+                        <!-- End .product-media -->
+
+                        <div class="product-body">
+
+                            <div class="product-action">
+                                <a  class="btn-cart" onclick="addToCart('{{this._id}}')"><span>add to cart</span></a>
+                                <a  class="btn-product-icon " onclick="addToWishlist('{{this._id}}')"><i class="bi bi-heart"></i><span>Add to
+                                        Wishlist</span></a>
+                            </div>
+                            <!-- End .product-action -->
+                            <div class="product-intro">
+                                <h3 class="product-title">
+                                    <a href="product.html">{{this.name}}</a>
+                                </h3>
+                                <!-- End .product-title -->
+                                <div class="product-price">
+                                    <p class="new-price1">Price: <span><i class="fa fa-light fa-indian-rupee-sign"></i>{{this.price}}&nbsp;{{#if this.actualPrice}} <del><i class="fa fa-light fa-indian-rupee-sign"></i> {{this.actualPrice}}</del></span>{{else}}<i class="fa fa-light fa-indian-rupee-sign"></i> <b>{{this.price}}</b>{{/if}}</span></p>
+                        {{#if this.proOfferPercentage}}<p class="product-price text-success mt-1 ms-3 border border-success rounded" style="width: 8rem;">{{#if this.proOfferPercentage}}&nbsp;&nbsp;{{this.proOfferPercentage}}<small>%off</small> {{/if}}{{#if this.catOfferPercentage }}{{this.catOfferPercentage}}<small>%off</small>{{/if}} </p>{{/if}}
+                                </div>
+                                <!-- End .product-price -->
+                            </div>
+
+                            <div class="ratings-cart text-right">
+                                <div class="ratings">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <span class="ratings-text">( 6 Reviews )</span>
+                                </div>
+                                <!-- <div class="cart">
+                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                                    </div> -->
+                            </div>
+                        </div>
+                        <!-- End .product-body -->
+                    </div>
+                    <!-- End .product -->
+
+                    
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="banners stretch mt-2">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-12 banner-lg">
+                        <img src="assets/images/demos/demo-24/banners/travel.jpg">
+                        <div class="intro">
+                            <div class="title">
+                                <h3><i>Travell</i></h3>
+                            </div>
+                            <div class="content">
+                                <h4>Camping & Hiking</h4>
+                                <p>Don't waste your time hurry up and enjoy your trip!!</p>
+                            </div>
+                            <div class="action">
+                                <a href="/product-details" >Discover Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12 banner-sm-div">
+                        <div class="col-lg-6 col-md-6 col-sm-6 banner-sm font-black">
+                            <img src="assets/images/demos/demo-24/banners/women.jpg">
+                            <div class="intro">
+                                <div class="title">
+                                    <h3>Women's</h3>
+                                </div>
+                                <div class="content">
+                                    <h4>Active &<br> Fitness</h4>
+                                </div>
+                                <div class="action">
+                                    <a href="/product-details">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 banner-sm font-white">
+                            <img src="assets/images/demos/demo-24/banners/men.jpg">
+                            <div class="intro">
+                                <div class="title">
+                                    <h3>Mens</h3>
+                                </div>
+                                <div class="content">
+                                    <h4>Deepest discount<br> of the season</h4>
+                                </div>
+                                <div class="action">
+                                    <a href="/product-details">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 banner-sm font-white">
+                            <img src="assets/images/demos/demo-24/banners/kids.jpg">
+                            <div class="intro">
+                                <div class="title">
+                                    <h3>Kids</h3>
+                                </div>
+                                <div class="content">
+                                    <h4>Surf Gear &<br>Accessories</h4>
+                                </div>
+                                <div class="action">
+                                    <a href="/product-details">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 banner-sm font-black">
+                            <img src="assets/images/demos/demo-24/banners/laptop.jpg">
+                            <div class="intro">
+                                <div class="title">
+                                    <h3>Laptop</h3>
+                                </div>
+                                <div class="content">
+                                    <h4>Secured<br>collection</h4>
+                                </div>
+                                <div class="action">
+                                    <a href="/product-details">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-products">
+            <div class="container">
+                <div class="heading">
+                    <p class="heading-cat">Featured Products </p>
+                    <h3 class="heading-title">Featured Products</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7 col-md-7 products">
+                        <div class="col-6">
+                            <div class="product product-10 text-center">
+                                <figure class="product-media">
+                                    <a href="product.html">
+                                        <img src="assets/images/demos/demo-24/featured-products/bag1.jpg"
+                                            alt="Product image" class="product-image">
+                                        <img src="assets/images/demos/demo-24/featured-products/bag1-1.jpg"
+                                            alt="Product image" class="product-image-hover">
+                                    </a>
+
+
+                                    <!-- End .product-action-vertical -->
+                                </figure>
+                                <!-- End .product-media -->
+
+                                <div class="product-body">
+
+                                    <div class="product-action">
+                                        <a href="#" class="btn-cart"><span>add to cart</span></a>
+                                        <a href="#" class="btn-product-icon "><i class="bi bi-heart"></i><span>Add to
+                                                Wishlist</span></a>
+                                    </div>
+                                    <!-- End .product-action -->
+                                    <div class="product-intro">
+                                        <h3 class="product-title">
+                                            <a href="product.html">Office/ Casual/ Travel Backpack</a>
+                                        </h3>
+                                        <!-- End .product-title -->
+                                        <div class="product-price">
+                                            ₹600
+                                        </div>
+                                        <!-- End .product-price -->
+                                    </div>
+                                    <div class="ratings-cart text-right">
+                                        <div class="ratings">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="false"></i>
+                                            <span class="ratings-text">( 3 Reviews )</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End .product-body -->
+                            </div>
+                            <!-- End .product -->
+                        </div>
+                        <div class="col-6">
+                            <div class="product product-10 text-center">
+                                <figure class="product-media">
+                                    <span class="product-label label-sale">sale</span>
+                                    <a href="product.html">
+                                        <img src="assets/images/demos/demo-24/featured-products/bag2.jpg"
+                                            alt="Product image" class="product-image">
+                                        <img src="assets/images/demos/demo-24/featured-products/bag2-1.jpg"
+                                            alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <!-- <div class="product-action-vertical">
+                                            <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                        </div> -->
+                                    <!-- End .product-action-vertical -->
+                                </figure>
+                                <!-- End .product-media -->
+
+                                <div class="product-body">
+
+                                    <div class="product-action">
+                                        <a href="#" class="btn-cart"><span>add to cart</span></a>
+                                        <a href="#" class="btn-product-icon "><i class="bi bi-heart"></i><span>Add to
+                                                Wishlist</span></a>
+                                    </div>
+                                    <!-- End .product-action -->
+                                    <div class="product-intro">
+                                        <h3 class="product-title">
+                                            <a href="product.html">Office Laptop Bag / Backpack for Men</a>
+                                        </h3>
+                                        <!-- End .product-title -->
+                                        <div class="product-price">
+                                            <span class="new-price">₹500</span>
+                                            <span class="old-price">Was ₹799</span>
+                                        </div>
+                                        <!-- End .product-price -->
+                                    </div>
+                                    <div class="ratings-cart text-right">
+                                        <div class="ratings">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="false"></i>
+                                            <span class="ratings-text">( 5 Reviews )</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End .product-body -->
+                            </div>
+                            <!-- End .product -->
+                        </div>
+                        <div class="col-6">
+                            <div class="product product-10 text-center">
+                                <figure class="product-media">
+                                    <span class="product-label label-sale">sale</span>
+                                    <a href="product.html">
+                                        <img src="assets/images/demos/demo-24/featured-products/bag-3 (1).jpg"
+                                            alt="Product image" class="product-image">
+                                        <img src="assets/images/demos/demo-24/featured-products/bag-3-1.jpg"
+                                            alt="Product image" class="product-image-hover">
+                                    </a>
+
+
+                                    <!-- End .product-action-vertical -->
+                                </figure>
+                                <!-- End .product-media -->
+
+                                <div class="product-body">
+
+                                    <div class="product-action">
+                                        <a href="#" class="btn-cart"><span>add to cart</span></a>
+                                        <a href="#" class="btn-product-icon "><i class="bi bi-heart"></i><span>Add to
+                                                Wishlist</span></a>
+                                    </div>
+                                    <!-- End .product-action -->
+                                    <div class="product-intro">
+                                        <h3 class="product-title">
+                                            <a href="product.html">Hiking/ Trekking/ Camping/ Travelling Rucksack
+                                                Backpack</a>
+                                        </h3>
+                                        <!-- End .product-title -->
+                                        <div class="product-price">
+                                            <span class="new-price">₹850</span>
+                                            <span class="old-price">Was ₹1000</span>
+                                        </div>
+                                        <!-- End .product-price -->
+                                    </div>
+                                    <div class="ratings-cart text-right">
+                                        <div class="ratings">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="false"></i>
+                                            <span class="ratings-text">( 7 Reviews )</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End .product-body -->
+                            </div>
+                            <!-- End .product -->
+                        </div>
+                        <div class="col-6">
+                            <div class="product product-10 text-center">
+                                <figure class="product-media">
+                                    <a href="product.html">
+                                        <img src="assets/images/demos/demo-24/featured-products/bag4.jpg"
+                                            alt="Product image" class="product-image">
+                                        <img src="assets/images/demos/demo-24/featured-products/bag4-1.jpg"
+                                            alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <!-- <div class="product-action-vertical">
+                                            <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                        </div> -->
+                                    <!-- End .product-action-vertical -->
+                                </figure>
+                                <!-- End .product-media -->
+
+                                <div class="product-body">
+
+                                    <div class="product-action">
+                                        <a href="#" class="btn-cart"><span>add to cart</span></a>
+                                        <a href="#" class="btn-product-icon "><i class="bi bi-heart"></i><span>Add to
+                                                Wishlist</span></a>
+                                    </div>
+                                    <!-- End .product-action -->
+                                    <div class="product-intro">
+                                        <h3 class="product-title">
+                                            <a href="product.html">LAPIS O LUPO Terra Combo Cotta Women Backpack</a>
+                                        </h3>
+                                        <!-- End .product-title -->
+                                        <div class="product-price">
+                                            ₹999
+                                        </div>
+                                        <!-- End .product-price -->
+                                    </div>
+                                    <div class="ratings-cart text-right">
+                                        <div class="ratings">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="false"></i>
+                                            <span class="ratings-text">( 3 Reviews )</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End .product-body -->
+                            </div>
+                            <!-- End .product -->
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-8 col-12">
+                        <div class="product product-10 product-lg text-center">
+                            <figure class="product-media">
+                                <span class="product-label label-deal">deal of the day</span>
+                                <a href="product.html">
+                                    <img src="assets/images/demos/demo-24/featured-products/bag5.jpg"
+                                        alt="Product image" class="product-image">
+                                </a>
+
+                                <!-- <div class="product-action-vertical">
+                                        <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                    </div> -->
+                                <!-- End .product-action-vertical -->
+                            </figure>
+                            <!-- End .product-media -->
+                            <!-- <div class="deal">
+                                    <div class="deal-countdown offer-countdown" data-until="+11d"></div> -->
+                            <!-- End .deal-countdown -->
+                            <!-- </div> -->
+
+                            <div class="product-body">
+
+                                <div class="product-intro">
+                                    <h3 class="product-title">
+                                        <a href="product.html">Premium leatherbag</a>
+                                    </h3>
+                                    <!-- End .product-title -->
+                                    <div class="product-price">
+                                        ₹2099
+                                    </div>
+                                    <!-- End .product-price -->
+                                </div>
+                                <div class="ratings-cart text-right">
+                                    <div class="ratings">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="false"></i>
+                                        <span class="ratings-text">( 3 Reviews )</span>
+                                    </div>
+                                </div>
+                                <div class="product-action">
+                                    <a href="#" class="btn-cart"><span>add to cart</span></a>
+                                    <a href="#" class="btn-product-icon "><i class="bi bi-heart"></i><span>Add to
+                                            Wishlist</span></a>
+                                </div>
+                                <!-- End .product-action -->
+                            </div>
+                            <!-- End .product-body -->
+                        </div>
+                        <!-- End .product -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="subscribe">
+            <div class="container">
+                <div class="heading">
+                    <p class="heading-cat">Get The Latest News & Deals</p>
+                    <h3 class="heading-title">Stay In The Know</h3>
+                </div>
+                <div class="col-lg-6 subscribe-form">
+                    <form action="#">
+                        <div class="input-group">
+                            <input type="email" placeholder="Enter your Email Address" aria-label="Email Adress"
+                                required="">
+                            <div class="input-group-append">
+                                <button class="btn btn-subscribe" type="submit"><span>Subscribe</span></button>
+                            </div>
+                            <!-- .End .input-group-append -->
+                        </div>
+                        <!-- .End .input-group -->
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog mb-6">
+            <div class="container">
+                <div class="heading">
+                    <p class="heading-cat">Our Fresh News</p>
+                    <h3 class="heading-title">New Blog Posts</h3>
+                </div>
+                <div class="owl-carousel owl-simple mb-4" data-toggle="owl" data-owl-options='{
+	                        "nav": true, 
+	                        "dots": false,
+	                        "items": 3,
+	                        "margin": 20,
+	                        "loop": false,
+	                        "responsive": {
+	                            "0": {
+	                                "items":1,
+	                                "dots":true
+	                            },
+	                            "520": {
+	                                "items":2,
+	                                "dots":true
+	                            },
+	                            "768": {
+	                                "items":3
+	                            }
+	                        }
+	                    }'>
+                    <article class="entry">
+                        <figure class="entry-media">
+                            <a href="single.html">
+                                <img src="assets/images/demos/demo-24/blog/blog-1.jpg" alt="image desc">
+                            </a>
+                        </figure>
+                        <!-- End .entry-media -->
+
+                        <div class="entry-body text-center">
+                            <div class="entry-meta">
+                                <a href="#">Nov 22, 2018</a>, 0 Comments
+                            </div>
+                            <!-- End .entry-meta -->
+
+                            <h3 class="entry-title">
+                                <a href="single.html">Their journey.</a>
+                            </h3>
+                            <!-- End .entry-title -->
+
+                            <div class="entry-content">
+                                <a href="single.html" class="read-more">read more</a>
+                            </div>
+                            <!-- End .entry-content -->
+                        </div>
+                        <!-- End .entry-body -->
+                    </article>
+                    <!-- End .entry -->
+
+                    <article class="entry">
+                        <figure class="entry-media">
+                            <a href="single.html">
+                                <img src="assets/images/demos/demo-24/blog/blog-2.jpg" alt="image desc">
+                            </a>
+                        </figure>
+                        <!-- End .entry-media -->
+
+                        <div class="entry-body text-center">
+                            <div class="entry-meta">
+                                <a href="#">Nov 22, 2018</a>, 0 Comments
+                            </div>
+                            <!-- End .entry-meta -->
+
+                            <h3 class="entry-title">
+                                <a href="single.html">Waits for next.</a>
+                            </h3>
+                            <!-- End .entry-title -->
+
+                            <div class="entry-content">
+                                <a href="single.html" class="read-more">read more</a>
+                            </div>
+                            <!-- End .entry-content -->
+                        </div>
+                        <!-- End .entry-body -->
+                    </article>
+                    <!-- End .entry -->
+
+                    <article class="entry">
+                        <figure class="entry-media">
+                            <a href="single.html">
+                                <img src="assets/images/demos/demo-24/blog/blog-3.jpg" alt="image desc">
+                            </a>
+                        </figure>
+                        <!-- End .entry-media -->
+
+                        <div class="entry-body text-center">
+                            <div class="entry-meta">
+                                <a href="#">Nov 22, 2018</a>, 0 Comments
+                            </div>
+                            <!-- End .entry-meta -->
+
+                            <h3 class="entry-title">
+                                <a href="single.html">Adventure and action.</a>
+                            </h3>
+                            <!-- End .entry-title -->
+
+                            <div class="entry-content">
+                                <a href="single.html" class="read-more">read more</a>
+                            </div>
+                            <!-- End .entry-content -->
+                        </div>
+                        <!-- End .entry-body -->
+                    </article>
+                    <!-- End .entry -->
+                </div>
+                <!-- End .owl-carousel -->
+            </div>
+        </section>
+
+        <section class="instagram mb-3">
+            <div class="container">
+                <div class="heading">
+                    <p class="heading-cat">Follow Us On Instagram <span class="highlight"><span></p>
+                </div>
+                <div class="row">
+                    <div class="col-xl-5col col-md-3 col-6 instagram-feed">
+                        <img src="assets/images/demos/demo-24/instagram/bag1.jpg">
+                        <div class="instagram-feed-content">
+                            <a href="#"><i class="bi bi-heart"></i>280</a>
+                            <a href="#"><i class="fa fa-thin fa-comments"></i>22</a>
+                        </div>
+                    </div>
+                    <div class="col-xl-5col col-md-3 col-6 instagram-feed">
+                        <img src="assets/images/demos/demo-24/instagram/bag2.jpg">
+                        <div class="instagram-feed-content">
+                            <a href="#"><i class="bi bi-heart"></i>280</a>
+                            <a href="#"><i class="fa fa-thin fa-comments"></i>22</a>
+                        </div>
+                    </div>
+                    <div class="col-xl-5col col-md-3 col-6 instagram-feed">
+                        <img src="assets/images/demos/demo-24/instagram/bag3.jpg">
+                        <div class="instagram-feed-content">
+                            <a href="#"><i class="bi bi-heart"></i>280</a>
+                            <a href="#"><i class="fa fa-thin fa-comments"></i>22</a>
+                        </div>
+                    </div>
+                    <div class="col-xl-5col col-md-3 col-6 instagram-feed">
+                        <img src="assets/images/demos/demo-24/instagram/bag4.jpg">
+                        <div class="instagram-feed-content">
+                            <a href="#"><i class="bi bi-heart"></i>280</a>
+                            <a href="#"><i class="fa fa-thin fa-comments"></i>22</a>
+                        </div>
+                    </div>
+                    <div class="col-xl-5col col-md-3 col-6 instagram-feed">
+                        <img src="assets/images/demos/demo-24/instagram/bag5.jpg">
+                        <div class="instagram-feed-content">
+                            <a href="#"><i class="bi bi-heart"></i>280</a>
+                            <a href="#"><i class="fa fa-thin fa-comments"></i>22</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+ <script>
+    AOS.init();
+  </script>

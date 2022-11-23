@@ -1,0 +1,184 @@
+<div class="container">
+        
+        <div class="row align-items-center justify-content-between py-3 px-xl-5 mt-5">
+            <div class="col-6  d-lg-block">
+                <a href="/" class="text-decoration-none">
+                    <h1 class="m-0 display-5 font-weight-semi-bold; text-danger">BAGGY</h1>
+                </a>
+            </div>
+            
+            <div class="col-6  text-right">
+                <button class="btn btn-primary" style="margin-left: 72%;" onclick="downloadInvoice()">Download Invoice</button>
+            </div>
+        </div>
+    </div>
+
+<div class="container w-100" id="invoice">
+    <div class="invoice-container" ref="document" id="html">
+        <table style="width:100%; height:auto;  text-align:center; " BORDER=0 CELLSPACING=0>
+            <thead style="background:#fafafa; padding:8px;">
+                <tr style="font-size: 20px;">
+                    
+                    <td colspan="4" style="padding:20px 20px;text-align: left;"><img style="width:100px ; height:100px ;" src="/assets/images/demos/demo-24/logo 1.jpg" alt="baggy" width="110" height="25">B A G G Y</td>
+                    <td class="display-3">INVOICE</td>
+                </tr>
+            </thead>
+            <tbody style="background:#ffff;padding:20px;">
+                {{#each invoice}}
+                <tr>
+                    <td colspan="4"
+                        style="padding:20px 0px 0px 20px;text-align:left;font-size: 16px; font-weight: bold;color:#000;">
+                        Hello, {{this.deliveryDetails.name}} </td>
+                    <td  class="mt-3 pt-4"><h5><u>Billing Address</u></h5><br> {{this.deliveryDetails.name}},<br>{{this.deliveryDetails.district}},{{this.deliveryDetails.town}}<br>PIN:{{this.deliveryDetails.pincode}}<br>Mob:{{this.deliveryDetails.phone}}<br></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align:left;padding:10px 10px 10px 20px;font-size:14px;">Your order
+                        details</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <table
+            style="width:100%; height:auto; background-color:#fff;text-align:center; padding:10px; background:#fafafa">
+            <tbody>
+                {{#each invoice}}
+                <tr style="color:#6c757d; font-size: 20px;">
+                    <td
+                        style="border-right:1.5px dashed  #DCDCDC; width:15%;font-size:12px;font-weight:700;padding: 0px 0px 10px 0px;">
+                        Order Date</td>
+                    <td
+                        style="border-right:1.5px dashed  #DCDCDC; width:15%;font-size:12px;font-weight:700;padding: 0px 0px 10px 0px;">
+                        Delivered Date</td>
+                    <td
+                        style="border-right: 1.5px dashed  #DCDCDC ;width:20%;font-size:12px;font-weight:700;padding: 0px 0px 10px 0px;">
+                        Order No.</td>
+                    <td
+                        style="border-right:1.5px dashed  #DCDCDC ;width:10%;font-size:12px;font-weight:700;padding: 0px 0px 10px 0px;">
+                        Payment</td>
+                    <td
+                        style="border-right:1.5px dashed  #DCDCDC ;width:15%;font-size:12px;font-weight:700;padding: 0px 0px 10px 0px;">
+                        Payment Method</td>
+                    <td style="width:25%;font-size:12px;font-weight:700;padding: 0px 0px 10px 0px;">Shipping Address
+                    </td>
+                </tr>
+                <tr style="background-color:#fff; font-size:12px; color:#262626;">
+                    <td style="border-right:1.5px dashed  #DCDCDC ;width:15%; font-weight:bold;background: #fafafa;">
+                        {{this.date}}</td>
+                    <td style="border-right:1.5px dashed  #DCDCDC ;width:15%; font-weight:bold;background: #fafafa;">
+                        {{this.deliverdDate}}</td>
+                    <td style="border-right:1.5px dashed  #DCDCDC ;width:20% ; font-weight:bold;background: #fafafa;">
+                        {{this._id}}</td>
+                    <td style="border-right:1.5px dashed  #DCDCDC ;width:10%; font-weight:bold;background: #fafafa;"><i class="fa fa-light fa-indian-rupee-sign"></i>&nbsp;
+                        {{this.totalAmount}}</td>
+                    <td style="border-right:1.5px dashed  #DCDCDC ;width:15%; font-weight:bold;background: #fafafa;">
+                        {{this.paymentMethod}}</td>
+                    <td style="width:25%; font-weight:bold;background: #fafafa;">{{this.deliveryDetails.district}},{{this.deliveryDetails.town}}<br>PIN:{{this.deliveryDetails.pincode}}<br>Mob:{{this.deliveryDetails.phone}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <table
+            style="width:100%; height:auto; background-color:#fff; margin-top:0px;  padding:20px; font-size:12px; border: 1px solid #ebebeb; border-top:0px;">
+            <thead>
+                <tr style=" color: #6c757d;font-weight: bold; padding: 5px;">
+                    <td colspan="2" style="text-align: left;" class="ps-3">PRODUCT INFORMATION</td>
+                    {{!-- <td style="text-align: center;">SIZE</td> --}}
+                    <td style="padding: 10px;text-align:center;">QUANTITY</td>
+                    <td style="padding: 10px;text-align:center;">ACTUAL PRICE</td>
+                    <td style="padding: 10px;text-align:center;">PRODUCT OFFER PERCENTAGE</td>
+                    <td style="padding: 10px;text-align:center;">CATEGORY OFFER PERCENTAGE</td>
+                    <td style="text-align: right;padding: 10px; " class="pe-5">PRICE</td>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    <td style="width:10%; ">
+                        <a href=""><img
+                                src="/product-images/{{this.product._id}}1.jpg" alt="product"
+                                style="width:100px;" /></a>
+                    </td>
+                    <td style="width:25%;margin-left:10px;text-align: center;">{{this.product.name}}</td>
+                    {{!-- <td style="width:20%;padding: 10px; text-align:center;"> S</td> --}}
+                    <td style="width:10%;padding: 10px;text-align: center;">{{this.quantity}}</td>
+                    <td style="width:10%;padding: 10px;text-align: center;">{{this.product.actualPrice}}</td>
+                    {{#if this.product.proOfferPercentage}}
+                    <td style="width:20%;padding: 10px;text-align: center;">{{this.product.proOfferPercentage}} %</td>
+                    {{else}}
+                    <td style="width:20%;padding: 10px;text-align: center;">0</td>
+                    {{/if}}
+                    {{#if this.product.catOfferPercentage}}
+                    <td style="width:20%;padding: 10px;text-align: center;">{{this.product.catOfferPercentage}} %</td>
+                    {{else}}
+                    <td style="width:20%;padding: 10px;text-align: center;">0</td>
+                    {{/if}}
+                    <td style="width:15%; ;font-weight: bold;font-size: 14px;">
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="text-align:end;font-size:13px;" class="pe-5"><i class="fa fa-light fa-indian-rupee-sign"></i>&nbsp;{{this.product.price}}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <table
+            style="width:100%; height:auto; background-color:#fff;padding:20px; font-size:12px; border: 1px solid #ebebeb; border-top:0">
+            <tbody>
+               
+                <tr style="padding:20px;color:#000;font-size:15px">
+                    {{#each invoice}}
+                    <td style="font-weight: bold;padding:5px 0px">Total</td>
+                    
+                    <td style="text-align:right;padding:5px 0px;font-weight: bold;font-size:16px;" class="pe-5"><i class="fa fa-light fa-indian-rupee-sign"></i>&nbsp;{{this.totalAmount}}</td>
+                    {{/each}}
+                </tr>
+                <tr>
+                    <td colspan="2" style="font-weight:bold;"><span style="color:#c61932;font-weight: bold;">THANK
+                            YOU</span> for shopping with us!</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="font-weight:bold;text-align:left;padding:5px 0px 0px 00px;font-size:14px;">
+                        BAGGY</td>
+                </tr>
+            </tbody>
+            <tfoot style="padding-top:20px;font-weight: bold;">
+                <tr>
+                    <td style="padding-top:20px;">Need help? Contact us <span style="color:#c61932">
+                            info@baggy-plus.shop </span></td>
+                </tr>
+            </tfoot>
+        </table>
+        <table
+            style="width:100%; height:auto; background-color:#fff;padding:20px; font-size:12px; border: 1px solid #ebebeb; border-top:0">
+            <tbody>
+                <tr>
+                    <td>
+                        <img class="ms-auto mt-3" style="width:100px ; height:100px ;" src="/assets/images/demos/demo-24/logo 1.jpg" alt="baggy" width="110" height="25">
+                        <p class="ms-auto">THANK YOU!</p>
+                    </td>
+                    <td>
+                        <td style="padding-top:20px;">Need help? Contact us <span style="color:#c61932">
+                            info@baggy-plus.shop </span></td>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot style="padding-top:15px;font-weight: bold;">
+                <tr>
+                    <td style="padding-top:20px;"><p><b>Returns Policy:</b> At Baggy we try to deliver perfectly each and every time. But in the off-chance that you need to return the item, please do so with the <strong> original Brand box/price 
+                        tag, original packing and invoice</strong> without which it will be really difficult for us to act on your request. Please help us in helping you. Terms and conditions apply. <br>
+                        <i class="text-dark">The goods sold as are intended for end user consumption and not for re-sale.</i></p></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js"></script>
+<script>
+    function downloadInvoice(){
+        const element = document.getElementById('invoice');
+        html2pdf().from(element).save()
+    }
+</script>

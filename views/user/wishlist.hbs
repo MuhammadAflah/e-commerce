@@ -1,0 +1,103 @@
+<main class="main">
+    <div class="page-header text-center" style="background-image: url('/assets/images/products/page-header-bg.jpg')">
+        <div class="container">
+            <h1 class="page-title">Wishlist<span>Shop</span></h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                {{!-- <li class="breadcrumb-item"><a href="#">Shop</a></li> --}}
+                <li class="breadcrumb-item active" aria-current="page">Wishlist</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
+    {{#if products}}
+    <div class="page-content">
+        <div class="container">
+            <table class="table table-wishlist table-mobile">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Add To Cart</th>
+                        <th>Remove</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each products}}
+                    <tr>
+                        <td class="product-col">
+                            <div class="product">
+                                <figure class="product-media">
+                                    <a href="#">
+                                        <img src="/product-images/{{this.product._id}}1.jpg" alt="Product image">
+                                    </a>
+                                </figure>
+                            </div><!-- End .product -->
+                        </td>
+                        <td>
+                            <h3 class="product-title">
+                                <a href="#">{{this.product.name}}</a>
+                            </h3>
+                        </td>
+                        <td class="price-col"><i class="fa fa-light fa-indian-rupee-sign"></i>{{this.product.price}}</td>
+
+                        <td class="stock-col"><button onclick="addToCart('{{this.product._id}}')"><i class="fa fa-light fa-cart-shopping"></i><span>Add to cart</span></button></td>
+                                
+
+                        <td class="remove-col" onclick="removeWishItem('{{this.product._id}}')"><a class=" ml-auto mb-2 mt-2"
+                                     style="width: 120px;"><i
+                                        class="fa fa-trash fa-2x" aria-hidden="true"></i></a></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table><!-- End .table table-wishlist -->
+            <div class="wishlist-share">
+                <div class="social-icons social-icons-sm mb-2">
+                    <label class="social-label">Share on:</label>
+                    <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon" title="Youtube" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="fa-brands fa-pinterest"></i></a>
+                </div><!-- End .soial-icons -->
+            </div><!-- End .wishlist-share -->
+        </div><!-- End .container -->
+    </div><!-- End .page-content -->
+    {{else}}
+    <div class="d-flex">
+		<img src="/images/empty-cart.jpg" alt="">
+		<h1 class="justify-content-center mt-5 pt-5" style="padding-top: 200px;">Your Wishlist is empty!! <br>
+			<a href="/" class="btn btn-success ">Continue Shopping</a>
+
+		</h1>
+		
+	</div>
+	
+	{{/if}}
+</main><!-- End .main -->
+
+
+
+<script>
+    
+    function removeWishItem(proId) {
+        console.log('function.call')
+        $.ajax({
+            url: '/delete-wish-item/' + proId,
+            method: 'get',
+            success: (response) => {
+                swal.fire("item removed").then(()=>{
+                    location.reload()
+                })
+                
+
+            }
+        })
+    }
+</script>

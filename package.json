@@ -1,0 +1,36 @@
+{
+  "name": "user-login",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "aos": "^2.3.4",
+    "bcrypt": "^5.0.1",
+    "chart.js": "^3.9.1",
+    "cookie-parser": "~1.4.4",
+    "cropperjs": "^1.5.12",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.3",
+    "express": "~4.16.1",
+    "express-cache-controller": "^1.1.0",
+    "express-fileupload": "^1.4.0",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "handlebars": "^4.7.7",
+    "hbs": "^4.2.0",
+    "http-errors": "~1.6.3",
+    "jquery-confirm": "^3.3.4",
+    "moment": "^2.29.4",
+    "mongodb": "^4.9.1",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.19",
+    "paypal-rest-sdk": "^1.8.1",
+    "promise": "^8.2.0",
+    "razorpay": "^2.8.3",
+    "referral-code-generator": "^1.0.8",
+    "sweetalert": "^2.1.2",
+    "twilio": "^3.83.0"
+  }
+}

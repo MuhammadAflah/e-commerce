@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+
+<div class="login-page bg-image pt-8 pb-8 pt-md-12 pb-md-12 pt-lg-17 pb-lg-17"
+    style="background-image: url('/assets/images/demos/demo-24/banners/travel.jpg ') ">
+
+    <div class="container">
+        <div class="form-box">
+            <div class="form-tab">
+                <ul class="nav nav-pills nav-fill" role="tablist">
+                    {{!-- <li class="nav-item">
+                        <a class="nav-link" id="signin-tab-2" data-toggle="tab" href="/signup" role="tab"
+                            aria-controls="signin-2" aria-selected="false">Register</a>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link active" id="register-tab-2" data-toggle="tab" href="/login" role="tab"
+                            aria-controls="register-2" aria-selected="true">Login</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="register-2" role="tabpanel"
+                        aria-labelledby="register-tab-2">
+                        <form action="/enter-otp" method="post">
+                            <div class="row">
+                                {{#if invalidOtpError}}
+                                <div class="alert alert-danger w-50 m-auto">
+                                    <strong>{{invalidOtpError}}</strong>
+                                </div>
+                                {{/if}}
+
+
+
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="register-email-2">Enter OTP *</label>
+                                <input type="text" class="form-control" id="" name="otp" required>
+                                {{!-- <a class="float-right" href="#">Re Send OTP</a> --}}
+                            </div><!-- End .form-group -->
+
+                            <div class="form-group">
+                                <input type="text" class="form-control d-none" id="" name="phone" value="{{phone}}"
+                                    required>
+                            </div>
+
+
+                            <div class="form-footer">
+
+                                <button type="submit" class="btn btn-outline-primary-2 ms-auto">
+                                    <span>Verify</span>
+                                    <i class="icon-long-arrow-right"></i>
+                                </button>
+
+
+                            </div><!-- End .form-footer -->
+                        </form>
+                        <div>
+                            <a href="/otp-login">
+                                <button id="btnCounter" disabled>Time left: <span id="count"></span>Resend OTP</button>
+
+                            </a>
+                                    
+                        </div>
+
+                    </div><!-- .End .tab-pane -->
+                </div><!-- End .tab-content -->
+            </div><!-- End .form-tab -->
+        </div><!-- End .form-box -->
+    </div><!-- End .container -->
+</div><!-- End .login-page section-bg -->
+
+<script>
+  // Get refreence to span and button
+var spn = document.getElementById("count");
+var btn = document.getElementById("btnCounter");
+
+var count = 10;     // Set count
+var timer = null;  // For referencing the timer
+
+(function countDown(){
+  // Display counter and start counting down
+  spn.textContent = count;
+  
+  // Run the function again every second if the count is not zero
+  if(count !== 0){
+    timer = setTimeout(countDown, 1000);
+    count--; // decrease the timer
+  } else {
+    // Enable the button
+    btn.removeAttribute("disabled");
+  }
+}());
+</script>

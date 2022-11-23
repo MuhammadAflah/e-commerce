@@ -1,0 +1,137 @@
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+<link href="/assets/css/bootstrap-2.min.css" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="/assets/css/style3.css" rel="stylesheet">
+<div class="container-fluid position-relative d-flex p-0">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-lg-12 mt-5">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"><u>Order management</u></p>
+                            </div>
+                        </div>
+                        <div class="col-12 text-right d-flex justify-content-end">
+                            <a href="/admin/sales-report" class="btn btn-dark text-light w-25">Sales Report</a>
+                        </div>
+                        <table class="table" id="viewusers1">
+                            <thead class="bg-secondary text-white">
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Date</th>
+                                    {{!-- <th scope="col"><input type="search" id="myInput" placeholder="Search Name"><i
+                                            class="fas fa-search"></i></th> --}}
+                                    <th>
+                                        <div class="input-group">
+                                            <div class="form-outline">
+                                                <input type="search" id="myInput" class="form-control" placeholder="search"/>
+                                                {{!-- <label class="form-label" for="form1">Search</label> --}}
+                                            </div>
+                                            <button type="button" class="btn btn-dark">
+                                                <i class="fas fa-search text-light "></i>
+                                            </button>
+                                        </div>
+                                    </th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Payment</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">View products</th>
+                                    <th scope="col">Options</th>
+                                    {{!-- <th scope="col">Update</th> --}}
+                                </tr>
+                            </thead>
+                            <tbody id="myTable" class="text-white-50">
+                                {{#each allOrderDetails}}
+                                <tr>
+                                    <th scope="row" class="fs-bold">{{inc @index}}</th>
+                                    <td>{{this.date}}</td>
+                                    <td>{{this.deliveryDetails.name}} </td>
+                                    <td>{{this.totalAmount}}</td>
+                                    <td>{{this.paymentMethod}}</td>
+                                    <td>{{this.status}}</td>
+                                    <td><a href="/admin/view-order-details/{{this._id}}"><i
+                                                class="fa  fa-eye fa-2x text-dark"></i></a></td>
+                                    {{#if this.isCancelled}}
+                                    <td class="btn btn-warning text-white">order cancelled</td>
+                                    {{else}}
+                                    {{#if this.isDelivered}}
+                                    <td class="btn btn-success text-white">order delivered </td>
+                                    {{else}}
+                                    {{#if this.isReturned}}
+                                    <td class="btn btn-success text-white">Item Returned </td>
+                                    {{else}}
+                                    <td>
+                                        <form action="/admin/order-status" method="post" class="">
+                                            <input type="text" id="id" name="orderId" class="d-none"
+                                                value="{{this._id}}">
+                                            <select name="status" id="status" class="w-100 form-control ">
+                                                <option name="" value="{{this.status}}">{{this.status}}</option>
+                                                
+                                                {{#if this.isShipped}}
+                                                <option value="Out For Delivery">Out for delivery</option>
+                                                <option value="delivered">delivered</option>
+                                                <option value="cancelled">Cancel</option>
+                                                {{else}}
+                                                {{#if this.isOutForDelivery}}
+                                                <option value="delivered">delivered</option>
+                                                <option value="cancelled">Cancel</option>
+                                                {{else}}
+                                                <option value="shipped">shipped</option>
+                                                <option value="cancelled">Cancel</option>
+                                                {{/if}}
+                                                {{/if}}
+                                            </select>
+                                            <div>
+                                                <button type="submit" class="btn btn-success mt-2">Submit</button>
+                                            </div>
+                                        </form>
+                                    </td>
+                                    {{!-- <td>
+                                        <button type="submit" class="btn btn-success ">Submit</button>
+                                    </td> --}}
+                                    {{/if}}
+                                    {{/if}}
+                                    {{/if}}
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+
+
+<script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $('#viewusers1').DataTable( {
+        "searching" : false,
+        "paging": true,
+        'ordering':false,
+        'info':false,
+        "lengthChange": false,
+    } );
+} );
+</script>
+
+{{!-- <script>
+    $(document).ready(function () {
+        
+        $('#viewusers1').DataTable();
+    });
+</script> --}}

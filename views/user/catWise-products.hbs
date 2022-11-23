@@ -1,0 +1,341 @@
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<div class="page-wrapper">
+    <main class="main">
+        <div class="page-header text-center"
+            style="background-image: url('/assets/images/products/page-header-bg.jpg')">
+            <div class="container">
+                <h1 class="page-title">Shop</h1>
+            </div><!-- End .container -->
+        </div><!-- End .page-header -->
+        <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li> 
+                    <li class="breadcrumb-item active"><a href="#">Shop</a></li>
+                    {{!-- <li class="breadcrumb-item active" aria-current="page">Grid 3 Columns</li> --}}
+                </ol>
+            </div><!-- End .container -->
+        </nav><!-- End .breadcrumb-nav -->
+
+        <div class="page-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="toolbox">
+                            <div class="toolbox-left">
+                                <div class="toolbox-info">
+                                    Showing <span>9 of 56</span> Products
+                                </div><!-- End .toolbox-info -->
+                            </div><!-- End .toolbox-left -->
+
+                            <div class="toolbox-right">
+                                <div class="toolbox-sort">
+                                    <label for="sortby">Sort by:</label>
+                                    <div class="select-custom">
+                                        <form action="/sort" method="post">
+                                            <select name="sortby" id="sortby" class="form-control">
+                                                <option value="Pricelow" selected="selected">Price : low to hight
+                                                </option>
+                                                <option value="Pricehigh">price : hight to low</option>
+                                                {{!-- <option value="date"></option> --}}
+                                            </select>
+                                            <button type="submit">apply</button>
+                                        
+                                        </form>
+                                    </div>
+                                </div><!-- End .toolbox-sort -->
+                                
+                            </div><!-- End .toolbox-right -->
+                        </div><!-- End .toolbox -->
+
+                        <div class="products mb-3">
+                            <div class="row justify-content-center">
+                                {{#each catWiseProducts}}
+                                <div class="col-6 col-md-4 col-lg-4 mb-3" style="width: 29.5rem; height: 40rem;">
+                                    <div class="product product-7 text-center" style="width: 29.5rem; height: 40rem;">
+                                        <figure class="product-media">
+                                            {{!-- <span class="ribbon  ribbon-green">{{#if proOfferPercentage}}<p class="">{{#if proOfferPercentage}}&nbsp;&nbsp;{{proOfferPercentage}}<small>%off</small> {{/if}}{{#if catOfferPercentage }}{{catOfferPercentage}}<small>%off</small>{{/if}} </p>{{/if}}</span> --}}
+                                       {{#if proOfferPercentage}}
+                                       <div class="price-container">
+                                            <div class="price">
+                                                <span class="number">{{#if proOfferPercentage}}<p class="mb-5 text-white fs-4 fw-bold">{{#if proOfferPercentage}}&nbsp;&nbsp;{{proOfferPercentage}}<small>%off</small> {{/if}}</p>{{/if}}</span>
+                                            </div>
+                                            
+                                        </div>
+                                        {{/if}}
+                                            <a href="/product/{{this._id}}">
+                                                <img src="/product-images/{{this._id}}1.jpg" alt="Product image"
+                                                    class="product-image">
+                                            </a>
+                                            <div class="product-action-vertical">
+                                                <a class="btn-product-icon btn-wishlist btn-expandable"
+                                                    id="{{this._id}}" onclick="addToWishlist('{{this._id}}')"><i
+                                                        class="fa fa-light fa-heart"></i><span>add to
+                                                        wishlist</span></a>
+
+                                                <a href="popup/quickView.html" class="btn-product-icon btn-quickview"
+                                                    title="Quick view"><i
+                                                        class="fa fa-light fa-binoculars"></i><span>Quick
+                                                        view</span></a>
+                                                {{!-- <a href="#" class="btn-product-icon btn-compare"
+                                                    title="Compare"><span>Compare</span></a> --}}
+                                            </div><!-- End .product-action-vertical -->
+
+                                            <div class="product-action">
+                                                <button onclick="addToCart('{{this._id}}')"
+                                                    class="btn-product btn-cart"><i
+                                                        class="fa fa-light fa-cart-shopping"></i><span>Add to
+                                                        cart</span></button>
+                                            </div><!-- End .product-action -->
+                                        </figure><!-- End .product-media -->
+
+                                        <div class="product-body">
+                                            <div class="product-cat">
+                                                <a href="/product/{{this._id}}" class="stretched-link">{{this.category}}</a>
+                                            </div><!-- End .product-cat -->
+                                            <h3 class="product-title"><a href="">{{this.name}}</a></h3>
+                                            <!-- End .product-title -->
+                                            <div class="product-price">
+                                                <p>{{#if actualPrice}} <b> <i class="fa fa-light fa-indian-rupee-sign"></i> {{this.price}}</b><span>&nbsp; <del><i class="fa fa-light fa-indian-rupee-sign"></i> {{this.actualPrice}}</del></span>{{else}}<i class="fa fa-light fa-indian-rupee-sign"></i> <b>{{this.price}}</b>{{/if}}</p>
+                                                {{!-- {{#if proOfferPercentage}}<p class="product-price text-success mt-1 ms-3 border border-success rounded">{{#if proOfferPercentage}}&nbsp;&nbsp;{{proOfferPercentage}}<small>%off</small> {{/if}}{{#if catOfferPercentage }}{{catOfferPercentage}}<small>%off</small>{{/if}} </p>{{/if}} --}}
+                                                {{#if catOfferPercentage }} <p class="product-price text-success mt-1 ms-3 border border-success rounded">{{#if catOfferPercentage }}{{catOfferPercentage}}<small>%off</small>{{/if}} </p>{{/if}}
+
+                                            </div><!-- End .product-price -->
+                                            {{#if fewStock}}
+                                                <p class="text-danger">Hurry only few stock available..</p>
+                                            {{/if}}
+                                            {{#if noStock}}
+                                                <p class="text-danger">out of stock</p>
+                                            {{/if}}
+                                            <div class="ratings-container">
+                                                <div class="ratings">
+                                                    <div class="ratings-val" style="width: 20%;"></div>
+                                                    <!-- End .ratings-val -->
+                                                </div><!-- End .ratings -->
+                                                <span class="ratings-text">( 2 Reviews )</span>
+                                            </div><!-- End .rating-container -->
+
+
+                                        </div><!-- End .product-body -->
+                                    </div><!-- End .product -->
+                                </div><!-- End .col-sm-6 col-lg-4 -->
+                                {{/each}}
+                            </div><!-- End .row -->
+                        </div><!-- End .products -->
+
+
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1"
+                                        aria-disabled="true">
+                                        <span aria-hidden="true"><i
+                                                class="fa-sharp fa-solid fa-circle-left"></i></span>Prev
+                                    </a>
+                                </li>
+                                <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item-total">of 6</li>
+                                <li class="page-item">
+                                    <a class="page-link page-link-next" href="#" aria-label="Next">
+                                        Next <span aria-hidden="true"><i class="fa-solid fa-circle-right"></i></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div><!-- End .col-lg-9 -->
+                    <aside class="col-lg-3 order-lg-first">
+                        <div class="sidebar sidebar-shop">
+                            <div class="widget widget-clean">
+                                <label>Filters:</label>
+                                <a href="#" class="sidebar-filter-clear">Clean All</a>
+                            </div><!-- End .widget widget-clean -->
+
+                            <div class="widget widget-collapsible" style="background:#e8e8e8; height: 82em;">
+                                <h3 class="widget-title ">
+                                    <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true"
+                                        aria-controls="widget-1" class="ps-5 fw-bold fs-2 text-center pt-3"><u>
+                                            Category</u>
+                                        {{!-- <i class="fa fa-light fa-caret-down ps-3 text-center "></i> --}}
+                                    </a>
+                                </h3><!-- End .widget-title -->
+
+                                <div class="collapse show" id="widget-1">
+                                    <div class="widget-body text-center">
+                                        <div class="filter-items filter-items-count">
+                                            <a href="/product-details" class="text-dark text center custom-control-label"><b>View All</b></a>
+                                            {{#each allCategories}}
+                                            <div class="filter-item">
+                                                {{!-- <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="cat-1">
+                                                    <label class="custom-control-label" for="cat-1">Dresses</label>
+                                                </div><!-- End .custom-checkbox --> --}}
+                                                <a href="/view-catWise/{{this.category}}" class="custom-control-label">
+                                                    <h5>{{this.category}}</h5>
+                                                </a>
+
+                                                {{!-- <span class="item-count"></span> --}}
+                                            </div><!-- End .filter-item -->
+                                            {{/each}}
+
+
+                                        </div><!-- End .filter-items -->
+                                    </div><!-- End .widget-body -->
+                                </div><!-- End .collapse -->
+                            </div><!-- End .widget -->
+                        </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<style>
+    {{!-- .ribbon {
+  position: absolute;
+  display: inline-block;
+  
+  top: 0.3em;
+  right: 0.8em;
+  
+  max-width: 5em;
+  
+  color: #fff;
+  
+  z-index: 1;
+}
+
+.ribbon::after {
+  position: absolute;
+  top: -1.5em;
+  right: -6em;
+  content: "";
+  
+  height: 5em;
+  width: 15em;
+  
+  transform: rotatez(45deg);
+
+  background-color: #c96;
+  z-index:-1;
+} --}}
+    .price-container,
+.price-container:before,
+.price-container:after,
+.price-container .price {
+	height: 4em;
+	width: 4em;
+	background: #c96;;
+}
+
+.price-container:before,
+.price-container:after {
+	content: "";
+	position: absolute;
+}
+
+.price-container {
+	margin: 20px auto; /* Centering for demo */
+	position: relative; /* Context */
+	top: 0;
+	left: 0;
+	background-color: #c96;;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+	transform-origin: center;
+	transition: 0.3s all ease-out;
+}
+
+.price-container:before {
+	top: 0;
+	left: 0;
+	-webkit-transform: rotate(22.5deg);
+	  -moz-transform: rotate(22.5deg);
+	   -ms-transform: rotate(22.5deg);
+	    -o-transform: rotate(22.5deg);
+	       transform: rotate(22.5deg);
+	z-index: 1;
+}
+
+.price-container:after {
+	top: 0;
+	left: 0;
+	-webkit-transform: rotate(-45deg);
+	  -moz-transform: rotate(-45deg);
+	   -ms-transform: rotate(-45deg);
+	    -o-transform: rotate(-45deg);
+	       transform: rotate(-45deg);
+	background-color: #c96;;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
+}
+
+.price-container .price {
+	padding: 1em 0em;
+	height: 3em; /* height minus padding */
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	-webkit-transform: rotate(-22.5deg);
+	  -moz-transform: rotate(-22.5deg);
+	   -ms-transform: rotate(-22.5deg);
+	    -o-transform: rotate(-22.5deg);
+	       transform: rotate(-22.5deg);
+	z-index: 1; /* important so the text shows up */
+}
+
+.price-container .price span {
+  position: relative;
+  z-index: 100;
+  display: block;
+  text-align: center;
+  color: #fff;
+  font: 1.5em/1.4em Sans-Serif;
+  text-transform: uppercase;
+}
+
+.price-container .price span.number {
+  font-weight: bold;
+  font-size: 1.625em;
+  line-height: .9em;
+  color: #ffebee;
+}
+
+.price-container:hover {
+	transform: matrix3d(1.058,0.38,-0.38,0,-0.38,1.058,-0.38,0,0.38,0.38,0.8464,0,0,0,0,1);
+-webkit-transform: matrix3d(1.058,0.38,-0.38,0,-0.38,1.058,-0.38,0,0.38,0.38,0.8464,0,0,0,0,1);
+}
+</style>
+
+<script>
+        function addToWishlist(proId){
+        $.ajax({
+            url:'/add-to-wishlist/'+proId,
+            method:'get',
+            success:(response)=>{
+                if(response.status){
+                    let count = $('#wishlist-count').html()
+                    count = parseInt(count) + 1
+                    $("#wishlist-count").html(count)
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'Item added to wishlist',
+                    showConfirmButton: false,
+                    timer: 1500
+                    })
+                    document.getElementById(proId).style.color="red";
+                }else{
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'Item Removed in wishlist',
+                    showConfirmButton: false,
+                    timer: 1500
+                    })
+                    document.getElementById(proId).style.color="grey";
+                }
+            }
+        
+        })
+    }
+</script>

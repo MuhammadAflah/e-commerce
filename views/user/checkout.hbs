@@ -1,0 +1,471 @@
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+
+<main class="main">
+    <div class="page-header text-center" style="background-image: url('/assets/images/products/page-header-bg.jpg')">
+        <div class="container">
+            <h1 class="page-title">Checkout<span>Shop</span></h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/shop-details">Shop</a></li>
+                <li class="breadcrumb-item"><a href="/cart">cart</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
+
+    <div class="page-content">
+        <div class="checkout">
+            <div class="container">
+                <div class="row">
+                <div class="col-lg-8 mt-5">
+                    <h5>Select Shipping Address</h5>
+                    {{#each userAddress.address}}
+                    <div class="custom-control custom-checkbox me-sm-2 border">
+                        <input type="radio" class="custom-control-input" required
+                            onclick="selectAddress('{{this.name}}','{{this.address}}','{{this.town}}','{{this.district}}','{{this.state}}','{{this.pincode}}','{{this.phone}}')"
+                            value="" name="addresses" id="{{@index}}">
+                        <label class="custom-control-label"
+                            for="{{@index}}">{{this.name}}<br>{{this.address}},{{this.town}},{{this.district}}<br>{{this.state}},{{this.pincode}},{{this.phone}}</label>
+
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="col-lg-4 mt-5">
+                <div class=" mt-4">
+                    <h3><u>Apply coupon</u></h3>
+                    <div class="input-group d-flex">
+                        <input type="text" class="form-control w-100" name="coupon" id="coupon" placeholder="coupon code">
+                        <div class="input-group-append">
+                            <button onclick="couponApply()" class="btn btn-outline-primary-2" type="submit">
+                                <span class="btn-text w-40"><i class="fa fa-light fa-arrow-right-long"></i></span>
+                                <span class="btn-hover-text">Apply coupon</span>
+                            </button>
+                        </div><!-- .End .input-group-append -->
+                    </div><!-- End .input-group -->
+                </div><!-- End .cart-discount -->
+                </div>
+                </div>
+
+                <form id="checkout-form" method="post">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            {{!-- <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title --> --}}
+                            <input type="text" id="couponName" name="coupon" hidden>
+                            <label hidden>Name</label>
+                            <input type="text" class="form-control" name="name" id="name" onkeyup="validateName()"
+                                placeholder="Name" hidden>
+                            <span id="name-error"></span><br>
+
+                            <label hidden>Address *</label>
+                            <input type="text" class="form-control" name="address" id="address"
+                                onkeyup="validateAddress()" placeholder="Address" hidden>
+                            <span id="address-error"></span><br>
+
+                            <label hidden>State *</label>
+                            <input type="text" class="form-control" name="state" id="state" onkeyup="validateState()"
+                                placeholder="State" hidden>
+                            <span id="state-error"></span><br>
+
+                            <label hidden>District *</label>
+                            <input type="text" class="form-control" name="district" id="district"
+                                onkeyup="validateDistrict()" placeholder="District" hidden>
+                            <span id="district-error"></span><br>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label hidden>Town / City *</label>
+                                    <input type="text" class="form-control" name="town" id="town"
+                                        onkeyup="validateTown()" placeholder="Town/City" hidden>
+                                    <span id="town-error"></span>
+                                </div><!-- End .col-sm-6 -->
+
+                                <div class="col-sm-6">
+                                    <label hidden>Postcode / ZIP *</label>
+                                    <input type="text" class="form-control" name="pincode" id="pincode"
+                                        onkeyup="validatePincode()" placeholder="Pincode" hidden>
+                                    <span id="pincode-error"></span>
+                                </div><!-- End .col-sm-6 -->
+                            </div><!-- End .row -->
+
+                            <label hidden>Phone *</label>
+                            <input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone"
+                                onkeyup="validatephone()" hidden>
+                            <span id="phone-error"></span>
+
+                            <input type="text" name="userId" id="" value="{{user._id}}" hidden>
+
+                            {{!-- <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="checkout-create-acc">&nbsp;
+                                Create an account?
+                            </div><!-- End .custom-checkbox -->
+
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="checkout-diff-address">&nbsp;
+                                Ship to a different address?
+                            </div><!-- End .custom-checkbox --> --}}
+
+
+                        </div><!-- End .col-lg-9 -->
+                        <aside class="col-lg-3">
+                            <div class="summary">
+
+                                <h3 class="summary-title mt-2">Your Order</h3><!-- End .summary-title -->
+
+                                <table class="table table-summary">
+                                    <thead>
+                                        <tr>
+                                            {{!-- <th>Product</th> --}}
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr class="summary-subtotal">
+                                            <td>Subtotal:</td>
+                                            <td>₹ {{total}}</td>
+                                        </tr><!-- End .summary-subtotal -->
+                                        <tr>
+                                            <td>Shipping:</td>
+                                            <td>Free shipping</td>
+                                        </tr>
+                                        <tr class="summary-total">
+                                            <td>Discount:</td>
+                                            <td id="discount"><i class="fa fa-light fa-indian-rupee-sign"></i>0.000</td>
+                                        </tr>
+                                        <tr class="summary-total">
+                                            <td>Total:</td>
+                                            <td id=""><i class="fa fa-light fa-indian-rupee-sign"></i><span id="total">{{total}}</span></td>
+                                        </tr><!-- End .summary-total -->
+                                    </tbody>
+                                </table><!-- End .table table-summary -->
+
+
+                                <h6>select your payment method:</h6>
+                                <input type="radio" id="" name="paymentMethod" value="Razorpay">
+                                <label for="">Razor pay</label><br>
+
+                                <input type="radio" id="" name="paymentMethod" value="COD" >
+                                <label for="">Cash On Delivery</label><br>
+
+                                <input type="radio" id="" name="paymentMethod" value="paypal">
+                                <label for="">Paypal</label><br>
+                                <img src="/assets/images/payments.png" alt="payments cards"><br>
+
+                                {{#if showWallet}}
+                                <input type="radio" id="" name="paymentMethod" value="wallet">
+                                <label for="">Wallet</label><br>
+                               {{/if}}
+
+                                <button onsubmit="formSubmit()" type="submit"
+                                    class="btn btn-outline-primary-2 btn-order btn-block">
+                                    <span class="btn-text">Place Order</span>
+                                    <span class="btn-hover-text">Proceed to Checkout</span>
+                                </button>
+                            </div><!-- End .summary -->
+                        </aside><!-- End .col-lg-3 -->
+                    </div><!-- End .row -->
+                </form>
+                <hr>
+
+                
+            </div><!-- End .container -->
+        </div><!-- End .checkout -->
+    </div><!-- End .page-content -->
+</main>
+
+<script>
+    $('#checkout-form').submit((e) => {
+        e.preventDefault()
+        $.ajax({
+            url: '/place-order',
+            method: 'post',
+            data: $('#checkout-form').serialize(),  //serialise is used to get all the data inside the form
+            success: (response) => {
+                if (response.codSuccess) {
+                    swal.fire(
+                        'order placed successfully',
+                        'you clicked the button',
+                        'success'
+                    ).then(() => {
+                        location.href = '/order-placed'
+                    })
+                } else if (response.paypal) {
+                    location.href = response.link
+                } else if (response.wallet) {
+                    location.href = '/order-placed'
+                }
+                else {
+                    razorpayPayment(response)
+                }
+            }
+        })
+    })
+    function razorpayPayment(order) {
+        var options = {
+            "key": "rzp_test_5VhjYnsQfq2yBu", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Baggy",
+            "description": "Test Transaction",
+            //"image": "https://example.com/your_logo",
+            "image": "/assets/images/demos/demo-24/logo 1.jpg",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+
+
+                verifyPayment(response, order)
+            },
+            "prefill": {
+                "name": "Muhammad Aflah",
+                "email": "muhammad.aflah@example.com",
+                "contact": "9999999999"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
+
+    function verifyPayment(payment, order) {
+        $.ajax({
+            url: '/verify-payment',
+            data: {
+                payment,
+                order
+            },
+            method: 'post',
+            success: (response) => {
+                if (response.status) {
+                    swal.fire(
+                        'Payment success!',
+                        'You clicked the button!',
+                        'success'
+                    ).then(() => {
+                        location.href = '/order-placed'
+                    })
+
+                } else {
+                    alert('payment failed!!')
+                }
+            }
+        })
+    }
+
+    function couponApply() {
+        console.log("entered")
+        let couponCode = document.getElementById('coupon').value
+        $.ajax({
+            url: '/coupon-apply',
+            data: {
+                coupon: couponCode,
+            },
+            method: 'post',
+            success: (response) => {
+                console.log(response)
+                if (response.couponSuccess) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Coupon Applied Successfully",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
+
+                    document.getElementById('total').innerHTML = response.total
+                    
+                    document.getElementById('discount').innerHTML = response.discountValue
+                    document.getElementById('couponName').value = response.couponCode
+
+                } else if (response.couponUsed) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "warning",
+                        title: "You are Already Used This Coupon",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
+
+                } else if (response.couponExpired) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "warning",
+                        title: "Entered Coupon Expired",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "warning",
+                        title: "Invalid Coupon",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
+                }
+            }
+        })
+    }
+
+</script>
+<script>
+    function selectAddress(name, address, town, district, state, pincode, phone) {
+        document.getElementById('name').value = name
+        document.getElementById('address').value = address
+        document.getElementById('town').value = town
+        document.getElementById('district').value = district
+        document.getElementById('state').value = state
+        document.getElementById('pincode').value = pincode
+        document.getElementById('phone').value = phone
+    }
+</script>
+
+{{!-- validation --}}
+{{!-- <script>
+    var nameError = document.getElementById('name-error');
+    var addressError = document.getElementById('address-error');
+    var townError = document.getElementById('town-error');
+    var districtError = document.getElementById('district-error');
+    var stateError = document.getElementById('state-error');
+    var pincodeError = document.getElementById('pincode-error');
+    var mobileError = document.getElementById('phone-error');
+
+    function validateName() {
+        var name = document.getElementById('name').value.trim();
+
+        if (name.length == 0) {
+            nameError.innerHTML = 'Name is Required';
+            nameError.style.color = 'red'
+            return false;
+        }
+
+        if (!name.match(/^[A-Za-z ]*$/)) {
+            nameError.innerHTML = 'Write a FullName';
+            nameError.style.color = 'red'
+            return false;
+        }
+        if (name.length < 2) {
+            nameError.innerHTML = 'Enter correct name';
+            nameError.style.color = 'red'
+            return false;
+        }
+
+        nameError.innerHTML = 'Name is valid';
+        nameError.style.color = 'green'
+        return true;
+    }
+    function validateAddress() {
+        var address = document.getElementById('address').value.trim();
+
+        if (address.length == 0) {
+            addressError.innerHTML = 'Address is Required';
+            addressError.style.color = 'red'
+            return false;
+        }
+        addressError.innerHTML = 'valid';
+        addressError.style.color = 'green'
+        return true;
+    }
+    function validateTown() {
+        var town = document.getElementById('town').value.trim();
+
+        if (town.length == 0) {
+            townError.innerHTML = 'Feild is Required';
+            townError.style.color = 'red'
+            return false;
+        }
+        townError.innerHTML = 'valid';
+        townError.style.color = 'green'
+        return true;
+    }
+    function validateDistrict() {
+        var district = document.getElementById('district').value.trim();
+
+        if (district.length == 0) {
+            districtError.innerHTML = 'Feild is Required';
+            districtError.style.color = 'red'
+            return false;
+        }
+        districtError.innerHTML = 'valid';
+        districtError.style.color = 'green'
+        return true;
+    }
+    function validateState() {
+        var state = document.getElementById('state').value.trim();
+
+        if (state.length == 0) {
+            stateError.innerHTML = 'Feild is Required';
+            stateError.style.color = 'red'
+            return false;
+        }
+        stateError.innerHTML = 'valid';
+        stateError.style.color = 'green'
+        return true;
+    }
+    function validatePincode() {
+        var pincode = document.getElementById('pincode').value.trim();
+
+        if (pincode.length == 0) {
+            pincodeError.innerHTML = 'Feild is Required';
+            pincodeError.style.color = 'red'
+            return false;
+        }
+        if (!pincode.match(/^[0-9 ]*$/)) {
+            pincodeError.innerHTML = 'Write a FullName';
+            pincodeError.style.color = 'red'
+            return false;
+        }
+        if (pincode.length > 6) {
+            pincodeError.innerHTML = 'Enter correct name';
+            pincodeError.style.color = 'red'
+            return false;
+        }
+        pincodeError.innerHTML = 'valid';
+        pincodeError.style.color = 'green'
+        return true;
+    }
+    function validatephone() {
+        var mobile = document.getElementById('phone').value.trim();
+        var Required = 15;
+        var left = Required - mobile.length;
+
+        if (mobile.length == 0 || mobile.length < 10) {
+            mobileError.innerHTML = 'more character Required';
+            mobileError.style.color = 'red'
+            return false;
+        }
+        mobileError.innerHTML = ' is valid';
+        mobileError.style.color = 'green'
+        return true;
+    }
+
+
+    $(document).on("submit", "form", function (e) {
+
+        validateName()
+        validateAddress()
+        validateTown()
+        validateDistrict()
+        validateState()
+        validatepincode()
+        validatephone()
+
+        if (validateName() && validateAddress() && validateTown() && validateDistrict() && validateState() && validatepincode() && validatephone()) {
+
+        } else {
+            e.preventDefault();
+            swal.fire('Invalid data!');
+            return false;
+        }
+    });
+</script> --}}

@@ -1,0 +1,623 @@
+
+
+
+{{!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
+
+<link rel="stylesheet" href="/assets/css/style.css">
+
+
+
+{{!-- <div class="page-wrapper"> --}}
+    <main class="main">
+        <div class="page-header text-center"
+            style="background-image: url('/assets/images/products/page-header-bg.jpg')">
+            <div class="container">
+                <h1 class="page-title">product details</h1>
+            </div><!-- End .container -->
+        </div><!-- End .page-header -->
+        <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+            <div class="container d-flex align-items-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/product-details">shop</a></li>
+                    <li class="breadcrumb-item active"><a href="#">product</a></li>
+                </ol>
+            </div><!-- End .container -->
+        </nav><!-- End .breadcrumb-nav -->
+        <div class="container">
+            <div class="card">
+                <!-- card left -->
+                <div class="product-imgs" >
+                    <div class="img-display">
+                        <div class="img-showcase">
+
+                            <img src="/product-images/{{productDetails._id}}1.jpg" alt="bag image" class="zoom">
+                            <img src="/product-images/{{productDetails._id}}2.jpg" alt="bag image" class="zoom">
+                            <img src="/product-images/{{productDetails._id}}3.jpg" alt="bag image" class="zoom">
+                            <img src="/product-images/{{productDetails._id}}4.jpg" alt="bag image" class="zoom">
+                        </div>
+                    </div>
+                    <div class="img-select">
+                        <div class="img-item">
+                            <a href="#" data-id="1">
+                                <img src="/product-images/{{productDetails._id}}1.jpg" alt="shoe image">
+                            </a>
+                        </div>
+                        <div class="img-item">
+                            <a href="#" data-id="2">
+                                <img src="/product-images/{{productDetails._id}}2.jpg" alt="shoe image">
+                            </a>
+                        </div>
+                        <div class="img-item">
+                            <a href="#" data-id="3">
+                                <img src="/product-images/{{productDetails._id}}3.jpg" alt="shoe image">
+                            </a>
+                        </div>
+                        <div class="img-item">
+                            <a href="#" data-id="4">
+                                <img src="/product-images/{{productDetails._id}}4.jpg" alt="shoe image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- card right -->
+                <div class="product-content">
+                    <h2 class="product-title1">{{productDetails.name}}</h2>
+                    <a href="" class="ms-auto"><i class="fa fa-light fa-heart"></i></a>
+                    <a href="#" class="product-link">visit baggy store</a>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>4.7(21)</span>
+                    </div>
+                    <div>
+                        {{#if productDetails.fewStock}}
+                            <p class="text-danger"><i class="fa fa-circle text-warning"></i> Hurry only few stock available</p>
+                        {{/if}}
+                        {{#if productDetails.stock}}
+                        <p><i class="fa fa-circle text-success "></i><b> InStock</b></p>
+                        {{/if}}
+                        {{#if productDetails.noStock}}
+                            <p class="text-danger"><i class="fa fa-circle text-danger "></i> out of stock</p>
+                        {{/if}}
+                    </div>
+
+                    <div class="product-price1">
+                        <p class="new-price1">Price: <span><i class="fa fa-light fa-indian-rupee-sign"></i>{{productDetails.price}}&nbsp;{{#if productDetails.actualPrice}} <del><i class="fa fa-light fa-indian-rupee-sign"></i> {{productDetails.actualPrice}}</del></span>{{else}}<i class="fa fa-light fa-indian-rupee-sign"></i> <b>{{productDetails.price}}</b></span></p>{{/if}}
+                        {{#if productDetails.proOfferPercentage}}<p class="product-price text-success mt-1 ms-3 border border-success rounded" style="width: 8rem;">{{#if productDetails.proOfferPercentage}}&nbsp;&nbsp;{{productDetails.proOfferPercentage}}<small>%off</small> {{/if}}{{#if productDetails.catOfferPercentage }}{{productDetails.catOfferPercentage}}<small>%off</small>{{/if}} </p>{{/if}}
+                    </div>
+
+                    <div class="product-detail">
+                        {{!-- <h2>about this item: </h2> --}}
+                        <p>{{productDetails.description}}</p>
+                        <ul>
+                            {{!-- <li>Color: <span>Black</span></li> --}}
+                            {{!-- <li>Available: <span>in stock</span></li> --}}
+                            <li>Category: <span>{{productDetails.category}}</span></li>
+                            {{!-- <li>Shipping Area: <span>All over the world</span></li> --}}
+                            {{!-- <li>Shipping Fee: <span>Free</span></li> --}}
+                        </ul>
+                    </div>
+
+                    <div class="purchase-info">
+                        {{!-- <a onclick="addToCart('{{productDetails._id}}')" href="" class="btn btn-success mt-3 cart" ><i class="fa fa-light fa-cart-shopping"></i>Add to
+                            Cart
+                        </a> --}}
+                        <button type="button" class="btn mt-3 cart" onclick="addToCart('{{productDetails._id}}')"><i
+                                class="fa fa-light fa-cart-shopping"></i>Add to
+                            Cart
+                        </button>
+
+                        <button type="button" class="btn mt-3 wish" onclick="addToWishlist('{{productDetails._id}}')"><i class="fa fa-light fa-heart"></i>Add to
+                            whishlist</button>
+                        {{!-- <button type="button" class="btn mt-3 buy"><i class="fa fa-solid fa-credit-card"></i>Buy
+                            Now</button> --}}
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </main>
+{{!-- </div> --}}
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+        line-height: 1.5;
+    }
+
+    .card-wrapper {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    img {
+        width: 100%;
+        display: block;
+    }
+
+    .img-display {
+        overflow: hidden;
+    }
+
+    .img-showcase {
+        display: flex;
+        width: 100%;
+        transition: all 0.5s ease;
+    }
+
+    .img-showcase img {
+        min-width: 100%;
+    }
+
+
+    .img-select {
+        display: flex;
+    }
+
+    .img-item {
+        margin: 0.3rem;
+    }
+
+    .img-item:nth-child(1),
+    .img-item:nth-child(2),
+    .img-item:nth-child(3) {
+        margin-right: 0;
+    }
+
+    .img-item:hover {
+        opacity: 0.8;
+    }
+
+    .product-content {
+        padding: 2rem 1rem;
+    }
+
+    .product-title1 {
+        font-size: 4rem;
+        text-transform: capitalize;
+        font-weight: 600;
+        position: relative;
+        color: #12263a;
+        margin: 1rem 0;
+    }
+
+    .product-title1::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 4px;
+        width: 80px;
+        background: #12263a;
+    }
+
+    .product-link {
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 0.9rem;
+        display: inline-block;
+        margin-bottom: 0.5rem;
+        background: #256eff;
+        color: #fff;
+        padding: 0 0.3rem;
+        transition: all 0.5s ease;
+    }
+
+    .product-link:hover {
+        opacity: 0.9;
+    }
+
+    .product-rating {
+        color: #ffc107;
+    }
+
+    .product-rating span {
+        font-weight: 600;
+        color: #252525;
+    }
+
+    .product-price1 p {
+        margin: 1rem 0;
+        font-size: 2rem;
+        font-weight: 400;
+    }
+
+    .product-price span {
+        font-weight: 400;
+    }
+
+    .new-price1 span {
+        color: #256eff;
+    }
+
+    .product-detail h2 {
+        text-transform: capitalize;
+        color: #12263a;
+        padding-bottom: 0.6rem;
+    }
+
+    .product-detail p {
+        font-size: 1.5rem;
+        padding: 0.3rem;
+        opacity: 0.8;
+    }
+
+    .product-detail ul {
+        margin: 1rem 0;
+        font-size: 1.5rem;
+    }
+
+    .product-detail ul li {
+        margin: 0;
+        list-style: none;
+        background: url(shoes_images/checked.png) left center no-repeat;
+        background-size: 18px;
+
+        margin: 0.4rem 0;
+        font-weight: 600;
+        opacity: 0.9;
+    }
+
+    .product-detail ul li span {
+        font-weight: 500;
+    }
+
+    .purchase-info {
+        margin: 1.5rem 0;
+    }
+
+    .purchase-info input,
+    .purchase-info .btn {
+        border: 2.5px solid #ddd;
+        border-radius: 10px;
+        text-align: center;
+        padding: 0.45rem 0.8rem;
+        outline: 0;
+        margin-right: 0.2rem;
+        margin-bottom: 1rem;
+        height: 50px;
+        width: 250px;
+    }
+
+    .purchase-info input {
+        width: 10px;
+    }
+
+    .purchase-info .btn {
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .cart {
+        background: #256eff;
+    }
+
+    .wish {
+        background: #f64749;
+    }
+
+    .buy {
+        background: #f64749;
+    }
+
+    .purchase-info .btn:hover {
+        opacity: 0.9;
+        color: #000;
+    }
+
+    .social-links {
+        display: flex;
+        align-items: center;
+    }
+
+    .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        color: #000;
+        border: 1px solid #000;
+        margin: 0 0.2rem;
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 0.8rem;
+        transition: all 0.5s ease;
+    }
+
+    .social-links a:hover {
+        background: #000;
+        border-color: transparent;
+        color: #fff;
+    }
+
+    @media screen and (min-width: 992px) {
+        .card {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 1.5rem;
+        }
+
+        .card-wrapper {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-imgs {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .product-content {
+            padding-top: 0;
+        }
+    }
+</style>
+
+<script>
+    function addToCart(proId){
+    $.ajax({
+        url:'/add-to-cart/'+proId,
+        method:'get',
+        success:(response)=>{
+            if(response.status){
+                alert('added')
+                let count=$('#cart-count').html()
+                count=parseInt(count)+1
+                $("#cart-count").html(count)
+                
+            }else{
+                location.href='/login'
+            }
+        }
+    })
+}
+</script>
+
+<script>
+    const imgs = document.querySelectorAll('.img-select a');
+    const imgBtns = [...imgs];
+    let imgId = 1;
+
+    imgBtns.forEach((imgItem) => {
+        imgItem.addEventListener('mouseover', (event) => {
+            event.preventDefault();
+            imgId = imgItem.dataset.id;
+            slideImage();
+        });
+    });
+
+    function slideImage() {
+        const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+
+        document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+    }
+
+</script>
+<script src="/zoomsl.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.zoom').imagezoomsl({
+            zoomrange:[3,3]
+            });
+        })
+    </script>
+
+
+
+
+
+
+{{!--
+<div class="page-wrapper">
+    <main class="main">
+        <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+            <div class="container d-flex align-items-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/product-details">shop</a></li>
+                    <li class="breadcrumb-item active"><a href="#">product</a></li>
+                </ol>
+
+                <nav class="product-pager ml-auto" aria-label="Product">
+                    <a class="product-pager-link product-pager-prev" href="#" aria-label="Previous" tabindex="-1">
+                        <i class="icon-angle-left"></i>
+                        <span>Prev</span>
+                    </a>
+
+                    <a class="product-pager-link product-pager-next" href="#" aria-label="Next" tabindex="-1">
+                        <span>Next</span>
+                        <i class="icon-angle-right"></i>
+                    </a>
+                </nav><!-- End .pager-nav -->
+            </div><!-- End .container -->
+        </nav><!-- End .breadcrumb-nav -->
+
+        <div class="page-content">
+            <div class="container">
+                <div class="product-details-top">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="product-gallery product-gallery-vertical">
+                                <div class="row">
+                                    <figure class="product-main-image">
+                                        <img id="product-zoom" src="/product-images/{{productDetails._id}}1.jpg"
+                                            alt="image1" data-zoom-image="/product-images/{{productDetails._id}}1.jpg"
+                                            alt="product image">
+
+                                        <a href="" id="btn-product-gallery" class="btn-product-gallery">
+                                            <i class="icon-arrows"></i>
+                                        </a>
+                                    </figure><!-- End .product-main-image -->
+
+                                    <div id="product-zoom-gallery" class="product-image-gallery">
+                                        <a class="product-gallery-item active" href="#" data-id="1"
+                                            data-image="/product-images/{{productDetails._id}}1.jpg"
+                                            data-zoom-image="/product-images/{{productDetails._id}}1.jpg">
+                                            <img src="/product-images/{{productDetails._id}}1.jpg" alt="product side">
+                                        </a>
+
+                                        <a class="product-gallery-item" href="#" data-id="2"
+                                            data-image="/product-images/{{productDetails._id}}2.jpg"
+                                            data-zoom-image="/product-images/{{productDetails._id}}2.jpg">
+                                            <img src="/product-images/{{productDetails._id}}2.jpg" alt="product cross">
+                                        </a>
+
+                                        <a class="product-gallery-item" href="#" data-id="3"
+                                            data-image="/product-images/{{productDetails._id}}3.jpg"
+                                            data-zoom-image="/product-images/{{productDetails._id}}3.jpg">
+                                            <img src="/product-images/{{productDetails._id}}3.jpg"
+                                                alt="product with model">
+                                        </a>
+
+                                        <a class="product-gallery-item" href="#" data-id="4"
+                                            data-image="/product-images/{{productDetails._id}}4.jpg"
+                                            data-zoom-image="/product-images/{{productDetails._id}}4.jpg">
+                                            <img src="/product-images/{{productDetails._id}}4.jpg" alt="product back">
+                                        </a>
+                                    </div><!-- End .product-image-gallery -->
+                                </div><!-- End .row -->
+                            </div><!-- End .product-gallery -->
+                        </div><!-- End .col-md-6 -->
+
+                        <div class="col-md-6">
+                            <div class="product-details">
+                                <h1 class="product-title">{{productDetails.name}}</h1><!-- End .product-title -->
+
+                                <div class="ratings-container">
+                                    <div class="ratings">
+                                        <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
+                                    </div><!-- End .ratings -->
+                                    <a class="ratings-text" href="#product-review-link" id="review-link">( 2 Reviews
+                                        )</a>
+                                </div><!-- End .rating-container -->
+
+                                <div class="product-price">
+                                    {{productDetails.price}}
+                                </div><!-- End .product-price -->
+
+                                <div class="product-content">
+                                    <p>{{productDetails.description}} </p>
+                                </div><!-- End .product-content -->
+
+                                <div class="details-filter-row details-row-size">
+                                    <label for="qty">Qty:</label>
+                                    <div class="product-details-quantity">
+                                        <input type="number" id="qty" class="form-control" value="1" min="1" max="10"
+                                            step="1" data-decimals="0" required>
+                                    </div><!-- End .product-details-quantity -->
+                                </div><!-- End .details-filter-row -->
+
+                                <div class="product-details-action">
+                                    <a href="#" class="btn-product btn-cart"><i
+                                            class="fa fa-light fa-cart-shopping"></i><span>add to cart</span></a>
+
+                                    <div class="details-action-wrapper">
+                                        <a href="#" class="btn-product btn-wishlist" title="Wishlist"><i
+                                                class="fa fa-light fa-heart"></i><span>Add to Wishlist</span></a>
+                                        <a href="#" class="btn-product btn-compare" title="Compare"><i
+                                                class="fa fa-solid fa-credit-card"></i><span> Buy Now</span></a>
+                                    </div><!-- End .details-action-wrapper -->
+                                </div><!-- End .product-details-action -->
+
+                                <div class="product-details-footer">
+                                    <div class="product-cat">
+                                        <span>Category:</span>
+                                        <a href="#">{{productDetails.category}}</a>,
+
+                                    </div><!-- End .product-cat -->
+                                </div><!-- End .product-details-footer -->
+                            </div><!-- End .product-details -->
+                        </div><!-- End .col-md-6 -->
+                    </div><!-- End .row -->
+                </div><!-- End .product-details-top -->
+
+                <div class="product-details-tab">
+                    <ul class="nav nav-pills justify-content-center" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="product-desc-link" data-toggle="tab" href="#product-desc-tab"
+                                role="tab" aria-controls="product-desc-tab" aria-selected="true">Description</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="product-info-link" data-toggle="tab" href="#product-info-tab"
+                                role="tab" aria-controls="product-info-tab" aria-selected="false">Additional
+                                information</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="product-shipping-link" data-toggle="tab"
+                                href="#product-shipping-tab" role="tab" aria-controls="product-shipping-tab"
+                                aria-selected="false">Shipping & Returns</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="product-review-link" data-toggle="tab" href="#product-review-tab"
+                                role="tab" aria-controls="product-review-tab" aria-selected="false">Reviews (2)</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel"
+                            aria-labelledby="product-desc-link">
+                            <div class="product-desc-content">
+                                <h3>Product Information</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque
+                                    volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non,
+                                    semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum.
+                                    Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
+                                    Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula
+                                    vulputate sem tristique cursus. </p>
+                                <ul>
+                                    <li>Nunc nec porttitor turpis. In eu risus enim. In vitae mollis elit. </li>
+                                    <li>Vivamus finibus vel mauris ut vehicula.</li>
+                                    <li>Nullam a magna porttitor, dictum risus nec, faucibus sapien.</li>
+                                </ul>
+
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque
+                                    volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non,
+                                    semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum.
+                                    Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
+                                    Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula
+                                    vulputate sem tristique cursus. </p>
+                            </div><!-- End .product-desc-content -->
+                        </div><!-- .End .tab-pane -->
+
+                        <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel"
+                            aria-labelledby="product-shipping-link">
+                            <div class="product-desc-content">
+                                <h3>Delivery & returns</h3>
+                                <p>We deliver to over 100 countries around the world. For full details of the delivery
+                                    options we offer, please view our <a href="#">Delivery information</a><br>
+                                    We hope you’ll love every purchase, but if you ever need to return an item you can
+                                    do so within a month of receipt. For full details of how to make a return, please
+                                    view our <a href="#">Returns information</a></p>
+                            </div><!-- End .product-desc-content -->
+                        </div><!-- .End .tab-pane -->
+
+                    </div><!-- End .tab-content -->
+                </div><!-- End .product-details-tab -->
+            </div>
+        </div>
+    </main>
+</div>
+
+--}}

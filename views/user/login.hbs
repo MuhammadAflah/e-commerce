@@ -1,0 +1,160 @@
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+
+<div class="login-page bg-image pt-8 pb-8 pt-md-12 pb-md-12 pt-lg-17 pb-lg-17"
+    style="background-image: url('/assets/images/demos/demo-24/banners/travel.jpg')">
+
+    <div class="container">
+        <div class="form-box">
+            <div class="form-tab">
+                <ul class="nav nav-pills nav-fill" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" id="signin-tab-2" data-toggle="tab" href="/signup" role="tab"
+                            aria-controls="signin-2" aria-selected="false">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" id="register-tab-2" data-toggle="tab" href="/login" role="tab"
+                            aria-controls="register-2" aria-selected="true">Login</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="register-2" role="tabpanel"
+                        aria-labelledby="register-tab-2">
+                        <form action="/login" method="post">
+                        <div class="row">
+                            {{#if loginError}}
+                            <div class="alert alert-danger w-50 m-auto">
+                                <strong>{{loginError}}</strong>
+                            </div>
+                            {{/if}}
+
+                            {{#if blockError}}
+                            <div class="alert alert-danger w-50 m-auto">
+                                <strong>{{blockError}}</strong>
+                            </div>
+                            {{/if}}
+                            {{#if otpLoginError}}
+                            <div class="alert alert-danger w-50 m-auto">
+                                <strong>{{otpLoginError}}</strong>
+                            </div>
+                            {{/if}}
+                            {{#if userBlockError}}
+                            <div class="alert alert-danger w-50 m-auto">
+                                <strong>{{userBlockError}}</strong>
+                            </div>
+                            {{/if}}
+                        </div>
+                            <div class="form-group">
+                                <label for="register-email-2">Your email address *</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="Email" onkeyup="validateEmail()">
+                                    <span id="email-error"></span>
+                            </div><!-- End .form-group -->
+
+                            <div class="form-group">
+                                <label for="register-password-2">Password *</label>
+                                <input type="password" class="form-control" id="password"
+                                    name="password" placeholder="Password" onkeyup="validatePassword()">
+                                    <span id="password-error"></span>
+                            </div><!-- End .form-group -->
+
+                            <div class="form-footer">
+                                <button type="button" class="btn btn-outline-primary-2 ">
+                                    <a href="/otp-login"><span>OTP Login</span></a>
+                                    
+                                    <i class="icon-long-arrow-right"></i>
+                                </button>
+                                <button onsubmit="formSubmit()" type="submit" class="btn btn-outline-primary-2 ms-auto">
+                                    <span>Login</span>
+                                    <i class="icon-long-arrow-right"></i>
+                                </button>
+
+
+                            </div><!-- End .form-footer -->
+                        </form>
+                        {{!-- <hr>
+                        <form action="/otp-login" method="post">
+                        
+                            <div class="form-group">
+                                <label for="register-email-2">Enter mobile number *</label>
+                                <input type="text" class="form-control" id="register-email-2" name="phone"
+                                    required placeholder="login with OTP">
+                            </div><!-- End .form-group -->
+
+                            
+
+                            <div class="form-footer">
+            
+                                <button type="submit" class="btn btn-outline-primary-2 ms-auto" data-bs-toggle="modal" data-bs-target="#myModal">
+                                    <span>Send SMS</span>
+                                    <i class="icon-long-arrow-right"></i>
+                                </button>
+
+
+                            </div><!-- End .form-footer -->
+                        </form> --}}
+
+                    </div><!-- .End .tab-pane -->
+                </div><!-- End .tab-content -->
+            </div><!-- End .form-tab -->
+        </div><!-- End .form-box -->
+    </div><!-- End .container -->
+</div><!-- End .login-page section-bg -->
+
+
+<script>
+    var emailError = document.getElementById('email-error');
+    var passwordError = document.getElementById('password-error');
+
+    function validateEmail(){
+    var email = document.getElementById('email').value.trim();
+    if (email.length==0) {
+        emailError.innerHTML='Email is Required';
+        emailError.style.color='red'
+        return false;
+    }
+
+    if (!email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+        emailError.innerHTML='Email is Invalid';
+        emailError.style.color='red'
+        return false;
+    }
+    emailError.innerHTML='Email is valid';
+    emailError.style.color='green'
+    return true;
+    }
+    function validatePassword() {
+    var message =document.getElementById('password').value.trim();
+    
+    if(message.length==0){
+        passwordError.innerHTML ='Password is Required';
+        passwordError.style.color='red'
+        return false;
+    }
+    if(message.length < 6){
+        passwordError.innerHTML ='Required more charactors';
+        passwordError.style.color='red'
+        return false;
+    }
+    passwordError.innerHTML='valid';
+    passwordError.style.color='green'
+    return true;   
+}
+
+
+$(document).on("submit", "form", function (e) {
+
+    validateEmail()
+    validatePassword()
+
+    if (validateEmail() && validatePassword()) {
+         
+    } else {
+        e.preventDefault();
+        swal.fire('Invalid data!');
+        return false;
+    }
+});
+</script>
+
+

@@ -1,0 +1,68 @@
+<link href="/assets/css/bootstrap-2.min.css" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="/assets/css/style3.css" rel="stylesheet">
+
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-12 col-xl-11">
+                    <div class="card text-white " style=" background-color: rgba(255, 0, 0, 0.0); border-radius: 25px;">
+                        <div class="card-body p-md-5">
+                            <div class="row justify-content-center">
+                                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Add Banner Details
+                                    </p>
+                                    <form action="/admin/add-banner" method="post" enctype="multipart/form-data"
+                                        class="mx-1 mx-md-4">
+                                        <div class="">
+                                            <a href="/admin/banner-management" class="" style="padding-left: 17rem;"><i
+                                                    class="fa fa-times text-danger fa-3x" aria-hidden="true"></i></a>
+                                        </div>
+
+                                        <div class="row">
+                                            {{#if bannerRepeatError}}
+                                            <div class="alert alert-danger">
+                                                <strong>{{bannerRepeatError}}</strong>
+                                            </div>
+                                            {{/if}}
+                                        </div>
+                                        <label for="">Name</label>
+                                        <input type="text" name="name" required id="form-1" class="form-control "
+                                            placeholder="Banner Name" minlength="3" type="text">
+
+                                        <label class="form-label" for="">sub-name</label>
+                                        <div class="form-outline mb-2">
+                                            <input type="text" name="subname" id="" class="form-control form-control-lg"
+                                                placeholder="text" />
+
+                                        </div>
+                                        <label class="form-label" for="">Offer</label>
+                                        <div class="form-outline mb-3">
+                                            <input type="tel" name="offer" id="" class="form-control form-control-lg"
+                                                placeholder="offer value" />
+
+                                        </div>
+                                        <label class="form-label" for="form2Example27">Thumbnail</label>
+                                        <div class="form-outline mb-2">
+                                            <input type="file" name="image" id="form2Example27"
+                                                class="form-control form-control-lg" placeholder="Thumbnail" required />
+
+                                        </div>
+
+
+                                        <div class="pt-1">
+                                            <button class="btn btn-dark btn-lg btn-block" type="submit">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,92 @@
+<link href="/assets/css/bootstrap-2.min.css" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="/assets/css/style3.css" rel="stylesheet">
+<div class="container-fluid position-relative d-flex p-0">
+    {{!-- <div class="content">
+        <div class="bg-secondary"> --}}
+            <div class="ml-auto" style="width:100%">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-12 mt-5">
+                            <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"><u>Category management</u></p>
+                            <div class="d-flex justify-content-end">
+                            <a class="btn btn-dark ml-auto mb-4 me-3" style="width:10rem ;" href="/admin/add-category">Add Category</a>
+                            <a href="/admin/category-offers" class="btn btn-dark ml-auto mb-4 " style="width: 180px;">Category Offer</a>
+                            </div>
+                            <div class="row d-block ">
+
+
+
+                                <table class="table mt-5" id="viewusers1">
+                                    <thead class="bg-secondary text-white-50">
+                                        <tr>
+
+                                            <th scope="col">No</th>
+                                            <th scope="col"><input class="form-control bg-dark border-0" type="search" id="myInput" placeholder="Category Name"></th>
+                                            <th scope="col">Edit </th>
+                                            <th scope="col">Delete</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="myTable" class="text-white-50">
+                                        {{#each allcategories}}
+                                        <tr>
+                                            {{!-- <td>*</td> --}}
+
+                                            {{!-- <th scope="row">{{_id}}</th> --}}
+                                            <th scope="row" class="fs-bold">{{inc @index}}</th>
+                                            <td>{{this.category}}</td>
+                                            <td class="pl-5 person-edit"><a href="/admin/edit-category/{{this._id}}"><i
+                                                        class="fa fa-edit fa-2x text-dark" aria-hidden="true" ></i></a></td>
+                                            <td class="pl-5"><a href="/admin/delete-category/{{this._id}}/{{this.category}}"><i
+                                                        class="fa fa-trash fa-2x text-dark" aria-hidden="true"
+                                                        onclick="return confirm('Are you sure want to Delete {{this.name}} Category')"></i></a>
+                                            </td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{#if categoryProductExistError}}
+<script>
+    swal.fire('Products exists in this category!!')
+</script>
+{{/if}}
+
+<script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $('#viewusers1').DataTable( {
+        "searching" : false,
+        "paging": true,
+        'ordering':false,
+        'info':false,
+        "lengthChange": false,
+    } );
+} );
+</script>
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+
+    {{!-- data table ajax --}}
+    {{!-- <script>
+        $(document).ready(function () {
+            $.noConflict();
+            $('#viewusers').DataTable();
+        });
+    </script> --}}

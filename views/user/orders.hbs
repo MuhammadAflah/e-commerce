@@ -1,0 +1,158 @@
+{{!-- data table jquery --}}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-lg-12">
+            <input type="search" id="myInput" class="form-control w-50 border border-dark mt-4 rounded-pill" placeholder="Type query" aria-label="Search" />
+            <dir style="overflow-x: scroll;">
+            <table class="table" id="viewusers1">
+                <thead class="" style="background: #011e3c;">
+                    <tr>
+                        <th scope="col" class="text-light">No</th>
+                        <th scope="col" class="text-light">Date</th>
+                        <th scope="col" class="text-light">Product</th>
+                        {{!-- <th scope="col" class="text-light">Product Name</th> --}}
+                        <th scope="col" class="text-light">Amount</th>
+                        <th scope="col" class="text-light">Payment</th>
+                        <th scope="col" class="text-light">Status</th>
+                        <th scope="col" class="text-light">View Products</th>
+                        <th scope="col" class="text-light">Cancel Order</th>
+                        <th scope="col" class="text-light">Invoice</th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+                    {{#each orders}}
+                    <tr>
+                        <td>{{inc @index}}</td>
+                        <td>{{this.date}}</td>
+                        {{!-- <td>{{this.deliveryDetails.name}}</td> --}}
+                        <td>{{#each this.products}}<img src="/product-images/{{this.item}}1.jpg" alt="" width="100px" height="100px">{{/each}}</td>
+                        {{!-- <td>{{this.deliveryDetails.district}},{{this.deliveryDetails.town}}<br>PIN:{{this.deliveryDetails.pincode}}<br>Mob:{{this.deliveryDetails.phone}}</td> --}}
+                        <td>{{this.totalAmount}}</td>
+                        <td>{{this.paymentMethod}}</td>
+                        <td>{{this.status}}</td>
+                        <td><a href="/view-order-products/{{this._id}}"><i class="fa fa-eye fa-2x"></i></a></td>
+                        {{#if this.isCancelled}}
+                        <td class="h6">order cancelled</td>
+                        {{else}}
+                        {{#if this.isDelivered}}
+                        {{#if this.isReturned}}
+                        <td class="h6">order returned</td>
+                        {{else}}
+                        <td><a onclick="returnOrder(event)" href="/return-order/{{this._id}}" class="btn btn-danger">Return</a></td>
+                        {{/if}}
+                        {{else}}
+                        <td><a onclick="cancelOrder(event)" href="/cancel-order/{{this._id}}" class="btn btn-warning">Cancel</a></td>
+                        {{/if}}
+                        {{/if}}
+                        {{#if this.isDelivered}}
+                        <td><a href="/invoice/{{this._id}}" class="btn btn-primary active">Invoice</a></td>
+                        {{else}}
+                        <td><a href="/invoice/{{this._id}}" class="btn btn-primary disabled">Invoice</a></td>
+                        {{/if}}
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            </dir>
+        </div>
+    </div>
+</div>
+
+<style>
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  color: rgb(255, 255, 255) !important;
+  border: none;
+  background-color: #011e3c; 
+  }
+  .dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+    background: #011e3ce8;
+  }
+  .dataTables_wrapper .dataTables_paginate .paginate_button:active{
+    background: #011e3ce8;
+  }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+
+<script>
+    function cancelOrder(event){
+        event.preventDefault();
+        var link = event.currentTarget.href;
+
+        swal.fire({
+            title: 'Are you sure',
+            text: 'Do you want to cancel',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Item deleted.',
+                    'success'
+                )
+                window.location=link;
+            }
+            else{
+                return false;
+            }
+        })
+    }
+
+    function returnOrder(event){
+        event.preventDefault();
+        var link = event.currentTarget.href;
+
+        swal.fire({
+            title: 'Are you sure',
+            text: 'Do you want to cancel',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Item deleted.',
+                    'success'
+                )
+                window.location=link;
+            }
+            else{
+                return false;
+            }
+        })
+    }
+</script>
+  {{!-- <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script> --}}
+
+<script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $('#viewusers1').DataTable( {
+        //"dom": "lfrti",
+        "searching" : false,
+        "paging": true,
+        'ordering':false,
+        'info':false,
+        "lengthChange": false,
+        //"paginationType": "custom",
+    } );
+} );
+</script>

@@ -1,0 +1,44 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            
+            <h1 class="text-center"><u> New admin registration</u></h1>
+            <form action="/admin/admin-signup" method="post">
+            {{#if addadminError}}
+                <div class="alert alert-danger">
+                    <strong>{{addadminError}}</strong>
+                </div>
+            {{/if}}
+                
+                <!-- Name input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" name="name" id="uname" placeholder="Username" required>
+                    <span></span>
+                    
+                </div>
+
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label">Email</label>
+                    <input type="text" class="form-control" name="email" id="email" placeholder="Email Address" required>
+                    
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" id="pw" placeholder="password" required>
+                    <span></span>
+                    
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+                <div class="text-center">
+                    <p>Have an account? <a href="/admin/admin-login">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

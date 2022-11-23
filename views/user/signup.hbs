@@ -1,0 +1,190 @@
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+
+<div class="login-page bg-image pt-8 pb-8 pt-md-12 pb-md-12 pt-lg-17 pb-lg-17"
+    style="background-image: url('/assets/images/demos/demo-24/banners/travel.jpg')">
+
+    <div class="container">
+        <div class="form-box">
+            <div class="form-tab">
+                <ul class="nav nav-pills nav-fill" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="signin-tab-2" data-toggle="tab" href="/signup" role="tab"
+                            aria-controls="signin-2" aria-selected="false">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " id="register-tab-2" data-toggle="tab" href="/login" role="tab"
+                            aria-controls="register-2" aria-selected="true">Login</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="register-2" role="tabpanel"
+                        aria-labelledby="register-tab-2">
+                        <form action="/signup" method="post">
+                        <div class="row">
+                        {{#if signupError}}
+                            <div class="alert alert-danger w-50 m-auto">
+                                <strong>{{signupError}}</strong>
+                            </div>
+                        {{/if}}
+                        </div>
+                            <div class="form-group">
+                                <label for="register-email-2">Username *</label>
+                                <input type="text" class="form-control" id="contact-name" name="name"
+                                    onkeyup="validateName()" placeholder="Name">
+                                    <span id="name-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="register-email-2">Your email address *</label>
+                                <input type="email" class="form-control" id="contact-email" name="email"
+                                    onkeyup="validateEmail()" placeholder="Email">
+                                    <span id="email-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="register-email-2">Mobile number *</label>
+                                <input type="text" class="form-control" id="mobile" name="mobile"
+                                    onkeyup="validateMobile()" placeholder="Mobile number">
+                                    <span id="mobile-error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="register-password-2">Password *</label>
+                                <input type="password" class="form-control" id="password"
+                                    name="password" onkeyup="validatePassword()" placeholder="Password">
+                                    <span id="password-error"></span>
+                            </div><!-- End .form-group -->
+
+                            <div class="form-group">
+                                <label for="register-password-2">Referral Code *</label>
+                                <input type="text" class="form-control" id="referral"
+                                    name="referral"  placeholder="Refferal-code">
+                            </div><!-- End .form-group -->
+
+                            <div class="form-footer">
+                                <button onsubmit="formSubmit()" type="submit" class="btn btn-outline-primary-2 ms-auto">
+                                    <span>SIGN UP</span>
+                                    <i class="icon-long-arrow-right"></i>
+                                </button>
+
+
+                            </div><!-- End .form-footer -->
+                        </form>
+
+                    </div><!-- .End .tab-pane -->
+                </div><!-- End .tab-content -->
+            </div><!-- End .form-tab -->
+        </div><!-- End .form-box -->
+    </div><!-- End .container -->
+</div><!-- End .login-page section-bg -->
+<script>
+var nameError = document.getElementById('name-error');
+var emailError = document.getElementById('email-error');
+var mobileError = document.getElementById('mobile-error');
+var passwordError = document.getElementById('password-error');
+
+
+function validateName() {
+    var name=document.getElementById('contact-name').value.trim();  
+
+    if (name.length==0) {
+        nameError.innerHTML='Name is Required';
+        nameError.style.color='red'
+        return false;
+    }
+
+    if (!name.match(/^[A-Za-z ]*$/)){
+        nameError.innerHTML='Write a FullName';
+        nameError.style.color='red'
+        return false;
+    }
+    if (name.length<3){
+        nameError.innerHTML='enter minimum 3 charactors';
+        nameError.style.color='red'
+        return false;
+    }
+    
+    nameError.innerHTML='Name is valid';
+    nameError.style.color='green'
+    return true;
+}
+
+function validateEmail(){
+    var email = document.getElementById('contact-email').value.trim();
+    if (email.length==0) {
+        emailError.innerHTML='Email is Required';
+        emailError.style.color='red'
+        return false;
+    }
+
+    if (!email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+        emailError.innerHTML='Email is Invalid';
+        emailError.style.color='red'
+        return false;
+    }
+    emailError.innerHTML='Email is valid';
+    emailError.style.color='green'
+    return true;
+}
+
+function validateMobile() {
+    var mobile =document.getElementById('mobile').value.trim();
+    var Required=15;
+    var left=Required - mobile.length;
+    
+    if(mobile.length==0 || mobile.length<10){
+        mobileError.innerHTML ='Feild id Required';
+        mobileError.style.color='red'
+        return false;
+    }
+    mobileError.innerHTML='Mobile verified✅';
+    mobileError.style.color='green'
+    return true;
+}
+
+function validatePassword() {
+    var message =document.getElementById('password').value.trim();
+    
+    if(message.length==0 || message.length<6){
+        passwordError.innerHTML ='Password Requires minimum 6 charactors';
+        passwordError.style.color='red'
+        return false;
+    }
+    if(!message.match(/[A-Z]{1}/)){
+        passwordError.innerHTML ='Password requires atleat one Capital letter';
+        passwordError.style.color='red'
+        return false;
+    }
+    if(!message.match(/[a-z]{1}/)){
+        passwordError.innerHTML ='Password requires atleat one Small letter';
+        passwordError.style.color='red'
+        return false;
+    }
+    if(!message.match(/[0-9]{1}/)){
+        passwordError.innerHTML ='Password requires atleat one Number';
+        passwordError.style.color='red'
+        return false;
+    }
+    passwordError.innerHTML='valid';
+    passwordError.style.color='green'
+    return true;   
+}
+
+$(document).on("submit", "form", function (e) {
+
+    validateName()
+    validateEmail()
+    validateMobile()
+    validatePassword()
+
+    if (validateName() && validateEmail() && validateMobile() && validatePassword()) {
+         
+    } else {
+        e.preventDefault();
+        swal.fire('Invalid data!');
+        return false;
+    }
+});
+</script>
+
+
+

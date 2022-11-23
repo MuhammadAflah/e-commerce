@@ -1,0 +1,174 @@
+{{!-- <link rel="stylesheet" href="/assets/css/bootstrap.min.css"> --}}
+{{!-- <link rel="stylesheet" href="/assets/css/style.css"> --}}
+{{!-- <div class="background" style="background-image: url(assets/images/demos/demo-24/slider/banner-4-1.jpg);"> --}}
+<header class="header">
+  
+  <div class="header-top">
+    
+    <div class="header-right text light">
+      
+      
+      <ul class="d-flex m-3 ">
+        {{#if user}}
+      <li class="ms-auto mx-3"><a href="#">User: {{user.name}}</a></li>
+      {{/if}}
+        
+        <li class="mx-3"><a href="about.html">About Us</a></li>
+        <li class="mx-3"><a href="contact.html">Contact Us</a></li>
+        {{#if user}}
+          <li><a href="/logout" data-toggle="modal"><i class="fa fa-user"></i>Logout</a> </li>
+        {{else}}
+          <li><a href="/login" data-toggle="modal"><i class="fa fa-user"></i>Login</a> </li>
+        {{/if}}
+
+        {{!-- <div class="dropdown">
+            <p class="btn btn-secondary dropdown-toggle" type="text" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              {{#if user}}
+                <i class="fa fa-user"></i>
+              {{else}}
+                <i class="fa fa-user"></i>
+              {{/if}}
+            </p>
+            <div class="dropdown-menu">
+              {{#if user}}
+                <a class="dropdown-item" href="/logout">Logout</a>
+              {{else}}
+                <a class="dropdown-item" href="/login">Login</a>
+              {{/if}}
+            </div>
+          </div> --}}
+          
+
+
+      </ul>
+    </div>
+
+  </div>
+  <!-- End .header-top -->
+
+  <div class="header-middle sticky-header">
+    <div class="header-left">
+      <button class="mobile-menu-toggler">
+        <span class="sr-only">Toggle mobile menu</span>
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <a href="" class="logo">
+        <img style="width:100px ; height:100px ;" src="/assets/images/demos/demo-24/logo 1.jpg" alt="baggy" width="110" height="25">
+      </a>
+    </div>
+    <!-- End .header-left -->
+
+    <div class="header-center">
+      <nav class="main-nav">
+        <ul class="menu sf-arrows">
+          <li class="megamenu-container ">
+            <a href="/" class="sf-with-ul">Home</a>
+          </li>
+          <li>
+            <a href="/product-details" class="sf-with-ul">Shop</a>
+
+          </li>
+          <li>
+            <a href="/product-details" class="sf-with-ul">Category<i class="fa fa-light fa-caret-down ps-3"></i></a>
+
+            <div class="megamenu megamenu-sm">
+              <div class="row no-gutters">
+                <div class="col-md-6">
+                  <div class="menu-col">
+                    <div class="menu-title">categories</div>
+                    <!-- End .menu-title -->
+                    <ul>
+                      <li><a href="/product-details">Men</a></li>
+                      <li><a href="/product-details">Women</a></li>
+                      <li><a href="/product-details">Kids</a></li>
+                      <li><a href="/product-details">Travel</a></li>
+                      <li><a href="/product-details">Wallet</a></li>
+                    </ul>
+                  </div>
+                  <!-- End .menu-col -->
+                </div>
+                <!-- End .col-md-6 -->
+
+                <div class="col-md-6">
+                  <div class="banner banner-overlay">
+                    <!-- <a href="category.html"> -->
+                    <img src="/assets/images/menu/banner-2.jpg" alt="Banner">
+
+                    <div class="banner-content banner-content-bottom">
+                      <div class="banner-title text-white">New Trends<br><span><strong>spring 2022</strong></span></div>
+                      <!-- End .banner-title -->
+                    </div><!-- End .banner-content -->
+                    </a>
+                  </div>
+                  <!-- End .banner -->
+                </div>
+                <!-- End .col-md-6 -->
+              </div>
+              <!-- End .row -->
+            </div>
+            <!-- End .megamenu megamenu-sm -->
+          </li>
+          <li>
+            <a href="/contact" class="sf-with-ul">Contact Us</a>
+          </li>
+          <li>
+            <a href="/orders" class="sf-with-ul">Orders</a>
+          </li>
+          {{#if user}}
+          <li><a href="/logout" class="sf-with-ul">Logout  <i class="fa fa-sharp fa-solid fa-right-from-bracket"></i></a></li>
+          {{else}}
+          <li><a href="/login" class="sf-with-ul">Login</a></li>
+          {{/if}}
+
+        </ul>
+        <!-- End .menu -->
+      </nav>
+      <!-- End .main-nav -->
+    </div>
+    {{#if user}}
+    <div class="header-right">
+      <div class="header-search">
+	      <a href="#" class="search-toggle" role="button" title="Search"><i class="fa fa-search"></i></a>
+	      <form action="#" method="get">
+	          <div class="header-search-wrapper">
+	              <label for="q" class="sr-only">Search</label>
+	              <input type="search" class="form-control" name="q" id="q" placeholder="Search in..." required>
+	          </div><!-- End .header-search-wrapper -->
+	      </form>
+	    </div>
+      <!-- End .header-search -->
+      <div class="wishlist">
+        <a href="/wishlist" title="Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span class="wishlist-count" id="wishlist-count">{{wishlistCount}}</span>
+        </a>
+      </div>
+      <!-- End .compare-dropdown -->
+      <div class="dropdown cart-dropdown">
+	      <a href="/cart" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+	          <i class="fa fa-light fa-cart-shopping" id="cart"></i>
+	          <span class="cart-count" id="cart-count">{{cartCount}}</span>
+	      </a>	                        
+	    </div>
+      
+      <div class="wishlist">
+        <a href="/profile" title="Account">
+          <i class="fa-regular fa-user"></i>
+        </a>
+      </div>
+      {{!-- <div class="position-relative">
+          <img class="rounded-circle ms-3" src="/profile-images/{{user._id}}.jpg" alt="" style="width: 40px; height: 40px;">
+          <div
+              class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+          </div>
+      </div> --}}
+    </div>
+    {{/if}}
+    <!-- End .header-right -->
+  </div>
+  <!-- End .header-middle -->
+</header>
+<!-- End .header -->
+</div>

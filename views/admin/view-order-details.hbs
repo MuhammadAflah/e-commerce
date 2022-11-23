@@ -1,0 +1,81 @@
+<link href="/assets/css/bootstrap-2.min.css" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="/assets/css/style3.css" rel="stylesheet">
+<div class="container-fluid position-relative  p-0">
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-12 mt-3">
+            {{!-- <input type="search" id="myInput" class="form-control w-50 border border-dark mt-4 rounded-pill" placeholder="Type query" aria-label="Search" /> --}}
+            <table class="table" id="viewusers1">
+                <thead class="" style="background: #011e3c;">
+                    <tr>
+                        {{!-- <th scope="col" class="text-light">No</th> --}}
+                        <th scope="col" class="text-light ps-2">Date</th>
+						<th scope="col" class="text-light">Order ID</th>
+                        <th scope="col" class="text-light">Name</th>
+                        <th scope="col" class="text-light">Address</th>
+                        <th scope="col" class="text-light">Payment</th>
+                        <th scope="col" class="text-light">Amount</th>
+                        {{!-- <th scope="col" class="text-light">Status</th> --}}
+                        {{!-- <th scope="col" class="text-light">View Products</th> --}}
+                        {{!-- <th scope="col" class="text-light">Cancel Order</th> --}}
+                        {{!-- <th scope="col" class="text-light">Invoice</th> --}}
+                    </tr>
+                </thead>
+                <tbody id="myTable" class="text-light">
+                    <tr>
+                        {{!-- <td>{{inc @index}}</td> --}}
+                        <td>{{orders.date}}</td>
+						<td>{{orders._id}}</td>
+                        <td>{{orders.deliveryDetails.name}}</td>
+                        <td>{{orders.deliveryDetails.district}},{{orders.deliveryDetails.town}}<br>PIN:{{orders.deliveryDetails.pincode}}<br>Mob:{{orders.deliveryDetails.phone}}</td>
+                        <td>{{orders.paymentMethod}}</td>
+						<td>{{orders.totalAmount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+    <div>
+        <section class="h-100" style="background-color: #2b3647;">
+            <div class="container h-100 ">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-10 mt-3">
+                        {{#each products}}
+                        <div class="card rounded-3 mb-4 ">
+
+
+                            <div class="card-body p-4">
+                                <div class="row d-flex justify-content-between align-items-center mt-5">
+                                    <div class="col-md-2 col-lg-2 col-xl-2">
+                                        <img src="/product-images/{{this.product._id}}1.jpg" class="img-fluid rounded-3"
+                                            alt="Cotton T-shirt">
+                                    </div>
+                                    <div class="col-md-3 col-lg-3 col-xl-3">
+                                        <p class="lead fw-normal mb-2">{{this.product.name}}</p>
+                                        <p><span class="text-muted">Quantity: {{this.quantity}}</span> </p>
+                                    </div>
+
+                                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                        <h5 class="mb-0"><i class="fa fa-solid fa-indian-rupee-sign"></i>
+                                            {{this.product.price}}</h5>
+                                    </div>
+                                    {{!-- <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                        <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                                    </div> --}}
+                                </div>
+                            </div>
+
+                        </div>
+                        {{/each}}
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
