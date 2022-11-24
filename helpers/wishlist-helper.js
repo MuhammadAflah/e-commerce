@@ -3,7 +3,6 @@ var bcrypt = require('bcrypt')
 const { ObjectId } = require('mongodb')
 var collection = require('../config/collection')
 const { resolve, reject } = require('promise')
-const { response } = require('../app')
 var objectId = require('mongodb').ObjectId
 
 module.exports = {

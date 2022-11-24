@@ -36,8 +36,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload())
 
 app.use(session({
-    // resave: false,
-    // saveUninitialized: false,
+    resave: false,
+    saveUninitialized: false,
     secret:"key",
     cookie:{maxAge:600000}
   })

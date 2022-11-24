@@ -2,7 +2,6 @@ var db = require('../config/connection')
 const bcrypt = require('bcrypt')
 var collection = require('../config/collection')
 const { resolve, reject } = require('promise')
-const { response } = require('../app')
 var objectId = require('mongodb').ObjectId
 const moment = require('moment');
 const referralCodeGenerator = require('referral-code-generator')

@@ -6,7 +6,7 @@ const productHelper = require('../helpers/product-helper')
 var fs = require('fs');
 const bannerHelper = require('../helpers/banner-helper')
 const { route } = require('./users');
-const { response } = require('../app');
+
 const couponHelper = require('../helpers/coupon-helper');
 const offerHelper = require('../helpers/offer-helper');
 const userHelpers = require('../helpers/user-helpers')
@@ -20,7 +20,7 @@ const setAdminLayout = (req, res, next) => {
 router.use(setAdminLayout)
 
 //admin login
-const credentials = { email: "muhammadaflah@gmail.com", password: "Af1230", name: "Muhammad Aflah" }
+const credentials = { email: process.env.email, password: process.env.password, name: process.env.name }
 
 // Verify login
 const verifyLogin = (req, res, next) => {
@@ -50,8 +50,6 @@ router.get('/sales-management', verifyLogin, async (req, res) => {
     let daily = await adminHelpers.dailyReport()
     let weekly = await adminHelpers.weeklyReport()
     let yearly = await adminHelpers.yearlyReport()
-    // console.log("daily start  jjjjjjjjjjjjjjjjjjjjjjjjj");
-    // console.log(daily,"this is daily");
     res.render('admin/sales-management', { admin: true, adminsession: req.session.admin, data, daily, weekly, yearly })
 })
 
