@@ -119,8 +119,8 @@
 
         swal.fire({
             title: 'Are you sure',
-            text: 'Do you want to cancel',
-            icon: 'warning',
+            text: 'Do you want to return this product',
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -128,8 +128,8 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire(
-                    'Deleted!',
-                    'Item deleted.',
+                    'Returned!',
+                    'Item returned.',
                     'success'
                 )
                 window.location=link;

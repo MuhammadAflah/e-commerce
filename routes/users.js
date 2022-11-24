@@ -576,7 +576,9 @@ router.get('/invoice/:id', verifyLogin, async (req, res) => {
   let invoice = await userHelpers.getUserInvoice(req.params.id)
   let products = await userHelpers.getOrderProducts(req.params.id)
   let orders = await userHelpers.getOrderDetails(orderId)
-  res.render('user/invoice', { user, invoice, products, orders })
+  let wishlistCount = await userHelpers.getWishlistCount(req.session.user._id)
+  let cartCount = await userHelpers.getCartCount(req.session.user._id)
+  res.render('user/invoice', { user, invoice, products, orders, cartCount, wishlistCount })
 })
 
 // track

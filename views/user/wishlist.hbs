@@ -70,13 +70,26 @@
         </div><!-- End .container -->
     </div><!-- End .page-content -->
     {{else}}
-    <div class="d-flex">
+    {{!-- <div class="d-flex">
 		<img src="/images/empty-cart.jpg" alt="">
 		<h1 class="justify-content-center mt-5 pt-5" style="padding-top: 200px;">Your Wishlist is empty!! <br>
 			<a href="/" class="btn btn-success ">Continue Shopping</a>
 
 		</h1>
 		
+	</div> --}}
+    <div class="container">
+		<div class="row">
+			<div class="col-12 col-md-12 col-lg-12">
+				<div>
+					<h1 class="text-center mt-5 pt-5">Your Wishlist is Empty!!</h1>
+				</div>
+				<div class="d-flex justify-content-center ">
+					<a href="/" class="btn btn-success me-1">Continue Shopping</a>
+					<a href="/orders" class="btn btn-secondary">View orders</a>
+				</div>
+			</div>
+		</div>
 	</div>
 	
 	{{/if}}
