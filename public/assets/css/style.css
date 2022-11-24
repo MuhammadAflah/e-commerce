@@ -297,80 +297,6 @@ blockquote.text-white cite span {
     margin-right: -10px
 }
 
-.col-1,
-.col-2,
-.col-3,
-.col-4,
-.col-5,
-.col-6,
-.col-7,
-.col-8,
-.col-9,
-.col-10,
-.col-11,
-.col-12,
-.col,
-.col-auto,
-.col-sm-1,
-.col-sm-2,
-.col-sm-3,
-.col-sm-4,
-.col-sm-5,
-.col-sm-6,
-.col-sm-7,
-.col-sm-8,
-.col-sm-9,
-.col-sm-10,
-.col-sm-11,
-.col-sm-12,
-.col-sm,
-.col-sm-auto,
-.col-md-1,
-.col-md-2,
-.col-md-3,
-.col-md-4,
-.col-md-5,
-.col-md-6,
-.col-md-7,
-.col-md-8,
-.col-md-9,
-.col-md-10,
-.col-md-11,
-.col-md-12,
-.col-md,
-.col-md-auto,
-.col-lg-1,
-.col-lg-2,
-.col-lg-3,
-.col-lg-4,
-.col-lg-5,
-.col-lg-6,
-.col-lg-7,
-.col-lg-8,
-.col-lg-9,
-.col-lg-10,
-.col-lg-11,
-.col-lg-12,
-.col-lg,
-.col-lg-auto,
-.col-xl-1,
-.col-xl-2,
-.col-xl-3,
-.col-xl-4,
-.col-xl-5,
-.col-xl-6,
-.col-xl-7,
-.col-xl-8,
-.col-xl-9,
-.col-xl-10,
-.col-xl-11,
-.col-xl-12,
-.col-xl,
-.col-xl-auto {
-    padding-right: 10px;
-    padding-left: 10px
-}
-
 .no-gutters {
     margin-left: 0;
     margin-right: 0
@@ -385,8 +311,6 @@ blockquote.text-white cite span {
 .container {
     width: 1188px;
     max-width: 100%;
-    padding-left: 10px;
-    padding-right: 10px
 }
 
 .page-wrapper {
@@ -427,26 +351,24 @@ blockquote.text-white cite span {
 
 .col-xl-5col {
     width: 100%;
-    padding-left: 10px;
-    padding-right: 10px
 }
 
 .col-xl-4-5col {
     width: 100%;
-    padding-left: 10px;
-    padding-right: 10px
+    /* padding-left: 10px;
+    padding-right: 10px */
 }
 
 .col-xl-2-5col {
     width: 100%;
-    padding-left: 10px;
-    padding-right: 10px
+    /* padding-left: 10px;
+    padding-right: 10px */
 }
 
 .col-xl-3-5col {
     width: 100%;
-    padding-left: 10px;
-    padding-right: 10px
+    /* padding-left: 10px;
+    padding-right: 10px */
 }
 
 @media screen and (min-width: 1200px) {
@@ -11215,9 +11137,6 @@ button:focus {
 }
 
 .carousel-with-shadow .owl-stage-outer {
-    padding: 0 1rem 2rem;
-    margin-left: -1rem;
-    margin-right: -1rem;
     margin-top: -3rem;
     padding-top: 3rem
 }
@@ -19707,80 +19626,6 @@ blockquote.text-white cite span {
     margin-right: -10px
 }
 
-.col-1,
-.col-2,
-.col-3,
-.col-4,
-.col-5,
-.col-6,
-.col-7,
-.col-8,
-.col-9,
-.col-10,
-.col-11,
-.col-12,
-.col,
-.col-auto,
-.col-sm-1,
-.col-sm-2,
-.col-sm-3,
-.col-sm-4,
-.col-sm-5,
-.col-sm-6,
-.col-sm-7,
-.col-sm-8,
-.col-sm-9,
-.col-sm-10,
-.col-sm-11,
-.col-sm-12,
-.col-sm,
-.col-sm-auto,
-.col-md-1,
-.col-md-2,
-.col-md-3,
-.col-md-4,
-.col-md-5,
-.col-md-6,
-.col-md-7,
-.col-md-8,
-.col-md-9,
-.col-md-10,
-.col-md-11,
-.col-md-12,
-.col-md,
-.col-md-auto,
-.col-lg-1,
-.col-lg-2,
-.col-lg-3,
-.col-lg-4,
-.col-lg-5,
-.col-lg-6,
-.col-lg-7,
-.col-lg-8,
-.col-lg-9,
-.col-lg-10,
-.col-lg-11,
-.col-lg-12,
-.col-lg,
-.col-lg-auto,
-.col-xl-1,
-.col-xl-2,
-.col-xl-3,
-.col-xl-4,
-.col-xl-5,
-.col-xl-6,
-.col-xl-7,
-.col-xl-8,
-.col-xl-9,
-.col-xl-10,
-.col-xl-11,
-.col-xl-12,
-.col-xl,
-.col-xl-auto {
-    padding-right: 10px;
-    padding-left: 10px
-}
-
 .no-gutters {
     margin-left: 0;
     margin-right: 0
@@ -19790,13 +19635,6 @@ blockquote.text-white cite span {
 .no-gutters>[class*=col-] {
     padding-left: 0;
     padding-right: 0
-}
-
-.container {
-    width: 1188px;
-    max-width: 100%;
-    padding-left: 10px;
-    padding-right: 10px
 }
 
 .page-wrapper {
@@ -19835,29 +19673,6 @@ blockquote.text-white cite span {
     }
 }
 
-.col-xl-5col {
-    width: 100%;
-    padding-left: 10px;
-    padding-right: 10px
-}
-
-.col-xl-4-5col {
-    width: 100%;
-    padding-left: 10px;
-    padding-right: 10px
-}
-
-.col-xl-2-5col {
-    width: 100%;
-    padding-left: 10px;
-    padding-right: 10px
-}
-
-.col-xl-3-5col {
-    width: 100%;
-    padding-left: 10px;
-    padding-right: 10px
-}
 
 @media screen and (min-width: 1200px) {
     /* .container-fluid {
@@ -30548,14 +30363,6 @@ button:focus {
     font-size: 3.4rem
 }
 
-.carousel-with-shadow .owl-stage-outer {
-    padding: 0 1rem 2rem;
-    margin-left: -1rem;
-    margin-right: -1rem;
-    margin-top: -3rem;
-    padding-top: 3rem
-}
-
 .carousel-with-shadow.owl-simple .owl-nav [class*='owl-'] {
     margin-top: -31px
 }
@@ -38905,28 +38712,33 @@ button:focus {
     
     
 }
+.carousel-caption{
+ position: absolute;
+    top: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 100%;   
+}
 .slide-1-heading{
-    position: absolute;
-    z-index: 20;
-    font-size: 9rem;
+    font-size: 8rem;
     font-weight: 600;
-    top: -35rem;
 }
 .slide-1-subhead{
-    position: absolute;
-    z-index: 13;
-    font-size: 6rem;
+    font-size: 5rem;
     font-weight: 400;
-    top: -26rem;
     line-height: 1;
 }
 .slide-button{
-    position: absolute;
-    z-index: 13;
     font-size: 2.5rem;
     font-weight: 500;
-    top: -13rem;
-    line-height: 1;
+    line-height: 2;
     color: red;
-    margin-left: -49rem;
 }

@@ -35,6 +35,15 @@ const verifyLogin = async (req, res, next) => {
   }
 };
 
+//verify cart
+const verifyCart = async (req, res, next)=>{
+  if (req.session.user) {
+    next();
+  } else {
+    res.redirect("/login");
+  }
+}
+
 // home page
 router.get('/', async (req, res, next) => {
   let user = req.session.user
@@ -285,7 +294,7 @@ router.get('/cart', async (req, res) => {
 })
 
 // add to cart
-router.get('/add-to-cart/:id', verifyLogin, async (req, res) => {
+router.get('/add-to-cart/:id', verifyCart, async (req, res) => {
   let user = req.session.user
   let count =await userHelpers.findProCount(req.session.user._id, req.params.id)
   let stock = await productHelper.findStock(req.params.id);

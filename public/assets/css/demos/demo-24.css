@@ -243,8 +243,6 @@
 .container {
     width: 1188px;
     max-width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem
 }
 
 .background {
@@ -972,7 +970,6 @@ span.highlight {
 }
 
 .instagram .container {
-    padding-top: 2rem;
     position: relative
 }
 
@@ -987,7 +984,6 @@ span.highlight {
 }
 
 .instagram .instagram-feed {
-    padding: 1rem;
     background-color: transparent
 }
 
