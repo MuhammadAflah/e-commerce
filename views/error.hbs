@@ -13,6 +13,7 @@
             </ol>
         </div><!-- End .container -->
     </nav><!-- End .breadcrumb-nav -->
+    {{#if user}}
     <div class="row">
     <div class="card">
         <img class="card-img opacity-50 img-fluid" src="/assets/images/demos/demo-24/banners/banner-3.jpg" alt="Card image">
@@ -26,5 +27,20 @@
         </div>
     </div>
     </div>
+    {{else}}
+    <div class="row">
+    <div class="card">
+        <img class="card-img opacity-50 img-fluid" src="/assets/images/demos/demo-24/banners/banner-3.jpg" alt="Card image">
+        <div class="card-img-overlay text-center d">
+            <h1 class="error-title ">Error 404</h1><!-- End .error-title -->
+             <p class="mt-3">We are sorry, the page you've requested is not available.</p>
+                <a href="/admin" class="btn btn-outline-primary-2 mt-4">
+                <span>BACK TO HOMEPAGE</span>
+                <i class="icon-long-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+    </div>
+    {{/if}}
     </div>
 </main><!-- End .main -->

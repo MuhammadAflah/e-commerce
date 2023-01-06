@@ -5,6 +5,7 @@
     }
 </style> --}}
 
+
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
 
@@ -173,11 +174,11 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6  ">
+                            {{!-- <div class="col-md-6  ">
                                 <div class="bg-white mt-3 card pt-5">
                                     <canvas class="" id="pie"></canvas>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         {{!--
                     </div> --}}
@@ -308,7 +309,7 @@
                                                 <th scope="col">Date</th>
                                                 <th scope="col">User</th>
                                                 <th scope="col">Amount</th>
-                                                <th scope="col">Discount</th>
+                                                {{!-- <th scope="col">Discount</th> --}}
                                                 <th scope="col">Payment</th>
                                                 <th scope="col">Status</th>
                                             </tr>
@@ -323,12 +324,12 @@
 
 
                                                 <td>{{this.totalAmount}}</td>
-                                                <td>
+                                                {{!-- <td>
                                                     {{#if this.discount}}
                                                     {{this.discount}}
                                                     {{else}}
                                                     0{{/if}}
-                                                </td>
+                                                </td> --}}
                                                 <td>{{this.paymentMethod}}</td>
                                                 <td>{{this.status}}</td>
 
@@ -457,7 +458,7 @@
     }
 	});
 
-    var pie = document.getElementById('pie').getContext('2d');
+    {{!-- var pie = document.getElementById('pie').getContext('2d');
     var chart = new Chart(pie, {
         // The type of chart we want to create
         type: 'doughnut',
@@ -493,7 +494,7 @@
             }]
         }
     }
-	});
+	}); --}}
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js"></script>

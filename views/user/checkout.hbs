@@ -139,6 +139,7 @@
                                             <td>Discount:</td>
                                             <td id="discount"><i class="fa fa-light fa-indian-rupee-sign"></i>0.000</td>
                                         </tr>
+                                        <input type="number" name="discount" id="discountPrice" hidden>
                                         <tr class="summary-total">
                                             <td>Total:</td>
                                             <td id=""><i class="fa fa-light fa-indian-rupee-sign"></i><span id="total">{{total}}</span></td>
@@ -287,6 +288,7 @@
                     
                     document.getElementById('discount').innerHTML = response.discountValue
                     document.getElementById('couponName').value = response.couponCode
+                    document.getElementById('discount-price').value = response.discountPrice
 
                 } else if (response.couponUsed) {
                     Swal.fire({

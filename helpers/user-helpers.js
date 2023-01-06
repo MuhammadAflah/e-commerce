@@ -399,6 +399,7 @@ module.exports = {
                 totalAmount: total,
                 status: status,
                 coupon: order.coupon,
+                discountPrice: order.discountPrice,
                 date: new Date()
             }
             db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response) => {
