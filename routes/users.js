@@ -338,7 +338,7 @@ router.get('/delete-cart-item/:cartId/:proId', verifyLogin, (req, res) => {
 router.get('/place-order', verifyLogin, async (req, res) => {
   let user = req.session.user
   let todayDate = new Date().toISOString().slice(0, 10);
-  // let startCatOffer=await offerHelper.startCategoryOffer(todayDate)
+  let startCatOffer=await offerHelper.startCategoryOffer(todayDate)
   let startCouponOffer = await couponHelper.startCouponOffer(todayDate)
   let userAddress = await userHelpers.getAddress(req.session.user._id)
   let cartCount = null
@@ -683,12 +683,32 @@ router.get("/return-order/:id", verifyLogin, async (req, res) => {
   });
 });
 
-// coupen apply
-router.post('/coupon-apply', async (req, res) => {
+// // coupen apply
+// router.post('/coupon-apply', async (req, res) => {
+//   let couponCode = req.body.coupon
+//   let userId = req.session.user._id
+//   let totalPrice = await userHelpers.getTotalAmount(userId);
+//   couponHelper.validateCoupon(couponCode, userId, totalPrice).then((response) => {
+//     req.session.couponTotal = response.total
+//     if (response.success) {
+//       res.json({ couponSuccess: true, total: response.total, discountValue: response.discountValue, couponCode })
+//     } else if (response.couponUsed) {
+//       res.json({ couponUsed: true })
+//     } else if (response.couponExpired) {
+//       res.json({ couponExpired: true })
+//     } else {
+//       res.json({ invalidCoupon: true })
+//     }
+
+//   })
+// })
+// coupon apply
+router.post('/coupon-apply', verifyLogin, async (req, res) => {
   let couponCode = req.body.coupon
   let userId = req.session.user._id
   let totalPrice = await userHelpers.getTotalAmount(userId);
-  couponHelper.validateCoupon(couponCode, userId, totalPrice).then((response) => {
+  console.log(couponCode,userId,totalPrice);
+  await couponHelper.validateCoupon(couponCode, userId, totalPrice).then((response) => {
     req.session.couponTotal = response.total
     if (response.success) {
       res.json({ couponSuccess: true, total: response.total, discountValue: response.discountValue, couponCode })
